@@ -1,123 +1,117 @@
 ---
-title: 'Create a Dynamic Sitemap with Next.js'
-publishedAt: '2020-03-02'
-summary: 'Learn how to add a dynamic sitemap to your Next.js project, along with a robots.txt file for optimal SEO.'
+title: 'Tạo Sơ đồ trang web động (Dynamic Sitemap) với Next.js'
+publishedAt: '2021-07-03'
+summary: 'Tìm hiểu cách thêm sơ đồ trang web động (Dynamic Sitemap) vào dự án Next.js của bạn, cùng với tệp robots.txt để tối ưu hóa SEO.'
+image: '/images/itemap.png'
 ---
 
-To improve your Search Engine Optimization (SEO), you might need to add a sitemap or `robots.txt` file to your Next.js site.
+Để cải thiện Tối ưu hóa Công cụ Tìm kiếm (SEO), bạn có thể cần thêm sơ đồ trang web hoặc tệp `robots.txt` vào trang Next.js của mình.
 
-A **sitemap** defines the relationship between pages of your site. Search engines utilize
-this file to more accurately index your site. You can also provide additional information
-such as last updated time, how frequently the page changes, and more.
+** Sitemap ** xác định mối quan hệ giữa các trang trong trang web của bạn. Công cụ tìm kiếm (Google,Bing,Yandex...) sử dụng
+tệp này để lập chỉ mục chính xác hơn trang web của bạn. Bạn cũng có thể cung cấp thêm thông tin
+chẳng hạn như thời gian cập nhật lần cuối `<lastmod>`, tần suất thay đổi của trang `<changefreq>` và hơn thế nữa.
 
-A **robots.txt** file tells search engines which pages or files the crawler can or can't request from your site.
+Tệp ** robots.txt ** cho công cụ tìm kiếm biết những trang hoặc tệp nào mà trình thu thập thông tin (Bots) có thể hoặc không thể yêu cầu từ trang web của bạn.
 
-## Static Sitemaps
+## Sơ đồ trang web tĩnh (Static Sitemap)
 
-If your site does not update frequently, you might currently have a static sitemap.
-This is a basic `.xml` file defining the content of your site. Here's a simple example:
+Nếu trang web của bạn không cập nhật thường xuyên, bạn có thể sử dụng sơ đồ trang web tĩnh.
+Đây là tệp `.xml` cơ bản xác định nội dung trang web của bạn. Ví dụ đơn giản:
 
 ```xml
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-      <loc>https://leerob.io</loc>
-  </url>
-  <url>
-      <loc>https://leerob.io/blog</loc>
-  </url>
+    <url>
+        <loc>https://tanhuynh.io</loc>
+    </url>
+    <url>
+        <loc>https://tanhuynh.io/blog</loc>
+    </url>
 </urlset>
 ```
+Khi trang web của bạn mở rộng quy mô, bạn nên tạo sơ đồ trang web động.
 
-As your site scales, you will probably want to create your sitemap dynamically.
+## Sơ đồ trang web động (Dynamic Sitemap)
 
-## Dynamic Sitemaps
+Nếu trang web của bạn thường xuyên thay đổi, bạn nên tạo một sơ đồ trang web động.
+Trước tiên, hãy xem xét một ví dụ trong đó nội dung trang web của bạn dựa trên tệp (ví dụ: trong thư mục `/pages`).
 
-If your site frequently changes, you should dynamically create a sitemap.
-Let's first look at an example where your site content is file-based (e.g., contained inside the `/pages` directory).
-
-First, let's add `globby` so we can fetch a list of routes.
+Đầu tiên, hãy thêm `globby` để chúng ta có thể tìm nạp danh sách routes.
 
 ```bash
 $ yarn add --dev globby
 ```
-
-> **Note:** `globby` [might not work](https://github.com/leerob/leerob.io/issues/293) on Windows.
-
-Next, we can create a Node script at `scripts/generate-sitemap.mjs`.
-This file will dynamically build a sitemap based on your `/pages` directory.
+Tiếp theo, chúng ta có thể tạo một tập lệnh Node tại `scripts/generate-sitemap.js`.
+Tệp này sẽ tự động tạo sơ đồ trang dựa trên thư mục `/pages` của bạn.
 
 ```js
-import { writeFileSync } from 'fs';
-import { globby } from 'globby';
-import prettier from 'prettier';
+const fs = require('fs');
 
-async function generate() {
+const globby = require('globby');
+const prettier = require('prettier');
+
+(async () => {
   const prettierConfig = await prettier.resolveConfig('./.prettierrc.js');
+
+  // Ignore Next.js specific files (e.g., _app.js) and API routes.
   const pages = await globby([
-    'pages/*.js',
-    'data/**/*.mdx',
-    '!data/*.mdx',
+    'pages/**/*{.js,.mdx}',
     '!pages/_*.js',
-    '!pages/api',
-    '!pages/404.js',
+    '!pages/api'
   ]);
-
   const sitemap = `
-    <?xml version="1.0" encoding="UTF-8"?>
-    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-        ${pages
-          .map((page) => {
-            const path = page
-              .replace('pages', '')
-              .replace('data', '')
-              .replace('.js', '')
-              .replace('.mdx', '');
-            const route = path === '/index' ? '' : path;
+        <?xml version="1.0" encoding="UTF-8"?>
+        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+            ${pages
+              .map((page) => {
+                const path = page
+                  .replace('pages', '')
+                  .replace('.js', '')
+                  .replace('.mdx', '');
+                const route = path === '/index' ? '' : path;
 
-            return `
-              <url>
-                  <loc>${`https://leerob.io${route}`}</loc>
-              </url>
-            `;
-          })
-          .join('')}
-    </urlset>
+                return `
+                        <url>
+                            <loc>${`https://webcuaban.com${route}`}</loc>
+                        </url>
+                    `;
+              })
+              .join('')}
+        </urlset>
     `;
 
+  // If you're not using Prettier, you can remove this.
   const formatted = prettier.format(sitemap, {
     ...prettierConfig,
-    parser: 'html',
+    parser: 'html'
   });
 
-  // eslint-disable-next-line no-sync
-  writeFileSync('public/sitemap.xml', formatted);
-}
-
-generate();
+  fs.writeFileSync('public/sitemap.xml', formatted);
+})();
 ```
 
-Finally, add `postbuild` script in your `package.json` to run this script after `next build` completes.
-Your generated file gets created at `public/sitemap.xml` which is then accessible from the root of your site.
+Cuối cùng, ghi đè `next.config.js` của bạn để chạy tập lệnh này trong quá trình build.
+Tệp của bạn được tạo tại `public/sitemap.xml`, sau đó được chuyển đến
+Root trang web của bạn (yêu cầu [Next v9.0 +](https://github.com/vercel/next.js/releases/tag/v9.0.0)).
 
-```json
-{
-  "scripts": {
-    "build": "next build",
-    "postbuild": "node ./scripts/generate-sitemap.mjs",
-    "dev": "next dev",
-    "start": "next start",
-    "lint": "next lint"
+```js
+module.exports = {
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      require('./scripts/generate-sitemap');
+    }
+
+    return config;
   }
-}
+};
 ```
 
-## External Content
+## Nội dung bổ sung
 
-If you have externally hosted data (e.g., a CMS), you'll need to make an API request
-before you can create your sitemap. This implementation will vary depending on your data source,
-but the idea is the same. To demonstrate, I've created an example using placeholder data.
+Nếu bạn có dữ liệu được lưu trữ bên ngoài (ví dụ: CMS), bạn sẽ cần thực hiện yêu cầu API
+trước khi bạn có thể tạo sơ đồ trang web của mình. Việc triển khai này sẽ khác nhau tùy thuộc vào nguồn dữ liệu của bạn,
+nhưng ý tưởng giống nhau. Để chứng minh, tôi đã tạo một ví dụ bằng cách sử dụng dữ liệu trình giữ chỗ (placeholder data).
 
-First, create a new file at `pages/sitemap.xml.js`.
+Đầu tiên, tạo một tệp mới tại `pages/sitemap.xml.js`:
 
 ```js
 import React from 'react';
@@ -136,8 +130,8 @@ class Sitemap extends React.Component {
 export default Sitemap;
 ```
 
-When the route `/sitemap.xml` is initially loaded, we will fetch posts from an external data source
-and then write an XML file as the response.
+Khi route `/sitemap.xml` được tải ban đầu, chúng ta sẽ tìm nạp các bài đăng từ nguồn dữ liệu bên ngoài
+và sau đó ghi một tệp XML dưới dạng phản hồi.
 
 ```js
 import React from 'react';
@@ -149,10 +143,10 @@ const createSitemap = (posts) => `<?xml version="1.0" encoding="UTF-8"?>
         ${posts
           .map(({ id }) => {
             return `
-                <url>
-                    <loc>${`${EXTERNAL_DATA_URL}/${id}`}</loc>
-                </url>
-            `;
+                    <url>
+                        <loc>${`${EXTERNAL_DATA_URL}/${id}`}</loc>
+                    </url>
+                `;
           })
           .join('')}
     </urlset>
@@ -172,25 +166,24 @@ class Sitemap extends React.Component {
 export default Sitemap;
 ```
 
-Here's a condensed example of the output.
-
+Đây là ví dụ về kết quả đầu ra.
 ```xml
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-      <loc>https://jsonplaceholder.typicode.com/posts/1</loc>
-  </url>
-  <url>
-      <loc>https://jsonplaceholder.typicode.com/posts/2</loc>
-  </url>
+    <url>
+        <loc>https://jsonplaceholder.typicode.com/posts/1</loc>
+    </url>
+    <url>
+        <loc>https://jsonplaceholder.typicode.com/posts/2</loc>
+    </url>
 </urlset>
 ```
 
 ## robots.txt
 
-Finally, we can create a static file at `public/robots.txt` to define which
-files can be crawled and where the sitemap is located.
+Cuối cùng, chúng ta có thể tạo một tệp tĩnh tại `public/robots.txt` để xác định tệp nào
+có thể được thu thập thông tin và vị trí của sơ đồ trang web.
 
 ```bash
 User-agent: *
-Sitemap: https://leerob.io/sitemap.xml
+Sitemap: https://tanhuynh.io/sitemap.xml
 ```

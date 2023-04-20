@@ -1,0 +1,163 @@
+---
+title: 'Core Web Vitals sẽ ảnh hưởng như thế nào đến Xếp hạng tìm kiếm Google vào năm 2021'
+publishedAt: '2021-05-18'
+summary: 'Bắt đầu từ tháng 6 này, Google sẽ thêm Core Web Vitals vào báo hiệu xếp hạng Trải nghiệm trang của mình. Năm ngoái, Google đã công bố rằng những thay đổi đang đến trong cách thuật toán của họ xếp hạng các trang vượt xa tốc độ tải trang, duyệt web an toàn, HTTPS và tính thân thiện với thiết bị di động của chúng.'
+---
+
+Bắt đầu từ tháng 6 này, Google sẽ thêm Core Web Vitals vào tín hiệu xếp hạng Trải nghiệm trang của mình.
+Năm ngoái, Google đã công bố rằng những thay đổi đang đến trong cách thuật toán của họ xếp hạng các trang vượt xa tốc độ tải trang, 
+duyệt web an toàn, HTTPS và tính thân thiện với thiết bị di động của chúng.
+
+Core Web Vitals đánh giá tốc độ, khả năng phản hồi và độ ổn định trực quan của các trang và ưu tiên trang đó trong bảng xếp hạng dựa trên kết quả của những điểm số này.
+ Điều này có nghĩa là hiệu suất trang web của bạn có ảnh hưởng trực tiếp đến SEO và doanh nghiệp của bạn.
+
+<Image
+  alt={`Các tín hiệu tìm kiếm là các đặc điểm của trang web xác định thứ hạng trên Google của nó. Ngay sau đó, các thành phần của Core Web Vitals sẽ được thêm vào danh sách các tín hiệu cần lưu ý khi tìm cách cải thiện SEO.`}
+  src={`/images/core-web-vitals/CWV.png`}
+  width={1080}
+  height={687}
+/>
+
+Trong bài đăng này, chúng ta sẽ xem qua:
+
+- [Core Web Vitals là gì và Chúng tác động đến SEO như thế nào?](/blog/core-web-virals-anh-huong-google-rankings-2021#core-web-vitals-là-gì-và-chúng-tác-động-đến-seo-như-thế-nào)
+- [Cải thiện hiệu suất trang web để tăng thứ hạng của Google](/blog/core-web-virals-anh-huong-google-rankings-2021#cải-thiện-hiệu-suất-trang-web-để-tăng-thứ-hạng-trên-google)
+- [Làm thế nào để đo lường các quan trọng web cốt lõi và hiểu cách tính điểm](/blog/core-web-virals-anh-huong-google-rankings-2021#làm-thế-nào-để-đo-lường-core-web-vitals-và-hiểu-cách-tính-điểm-xếp-hạng)
+
+## Core Web Vitals là gì và Chúng tác động đến SEO như thế nào?
+
+Core Web Vitals giúp bạn hiểu tác động của hiệu suất ứng dụng của bạn đối với người dùng cuối. 
+Có ba thành phần chính của Core Web Vitals để tối ưu hóa chất lượng trải nghiệm trang của bạn:
+
+### Largest Contentful Paint 
+Chỉ số [Largest Contentful Paint (LCP)](https://web.dev/lcp/) xem xét tốc độ tải trang của bạn. LCP đo thời gian cần thiết để phần tử lớn nhất trên trang hiển thị trong khung nhìn. 
+Đây có thể là một khối văn bản lớn, video hoặc hình ảnh chiếm nội dung chính trên trang. Đây không phải là [First Contentful Paint (FCP)](https://web.dev/fcp/), 
+đo thời gian từ khi trang bắt đầu tải đến khi phần tử đầu tiên được hiển thị trên màn hình.:
+
+<Image
+  alt={`Khi DOM được hiển thị, phần tử lớn nhất trên trang có thể thay đổi. Ở đây, 
+  Bức tranh có nội dung lớn nhất được tính cho đến khi hình ảnh được nhìn thấy trên màn hình. 
+  Theo Google, LCP tốt là dưới 2,5 giây.`}
+  src={`/images/core-web-vitals/LCP.png`}
+  width={1080}
+  height={503}
+/>
+
+Giảm thiểu LCP của bạn chứng tỏ trang của bạn có thể sử dụng được và đưa nội dung lên màn hình một cách nhanh chóng. Mục tiêu LCP dưới 2,5 giây.
+
+
+<Image
+  alt={`Chỉ số LCP của bạn càng thấp, trải nghiệm trang của bạn càng tốt.`}
+  src={`/images/core-web-vitals/LCP1.png`}
+  width={1440}
+  height={960}
+/>
+
+
+### First Input Delay
+Chỉ số [First Input Delay (FID)](https://web.dev/fid/) là nhận thức về trải nghiệm của người dùng cuối khi tương tác với một trang web. 
+Hãy tưởng tượng bạn chỉ nhấp vào bên trong hộp nhập liệu để không có gì xảy ra - sự thất vọng với tính tương tác và khả năng phản hồi của một trang web là do sự chậm trễ đầu vào lớn.
+
+<Image
+  alt={`First Input Delay (FID) được đo từ thời điểm tương tác của người dùng xảy ra đến khi trình xử lý sự kiện cuối cùng được gọi.`}
+  src={`/images/core-web-vitals/FID.png`}
+  width={1080}
+  height={503}
+/>
+
+
+FID xảy ra khi chuỗi chính của trình duyệt đang thực hiện các tác vụ khác và không thể phản hồi yêu cầu của người dùng. Điểm FID của bạn càng thấp, 
+người dùng cuối của bạn càng có thể sử dụng trang của bạn. Nhắm đến FID dưới 100 mili giây.
+
+<Image
+  alt={`Theo Google, hãy đặt mục tiêu FID dưới 100ms để có trải nghiệm trang tốt hơn.`}
+  src={`/images/core-web-vitals/FID1.png`}
+  width={750}
+  height={500}
+/>
+
+
+### Cumulative Layout Shift
+
+Chỉ số [Cumulative Layout Shift (CLS)](https://web.dev/cls/) là thước đo về độ ổn định bố cục tổng thể của trang web của bạn. 
+Một trang web bất ngờ thay đổi bố cục khi tải trang có thể dẫn đến lỗi và mất tập trung của người dùng.
+
+<Image
+  alt={`Cumulative Layout Shift (CLS) xảy ra khi các phần tử đã được dịch chuyển sau khi được DOM hiển thị ban đầu. 
+  Ở đây, một nút được hiển thị trên màn hình sau khối văn bản, làm cho khối dịch chuyển xuống dưới. 
+  Sự kết hợp giữa tác động và khoảng cách là những gì được xem xét khi tính CLS.`}
+  src={`/images/core-web-vitals/CLS.png`}
+  width={2062}
+  height={960}
+/>
+
+Điểm số [Cumulative Layout Shift](https://web.dev/cls/#layout-shift-score) riêng lẻ của mỗi phần tử chỉ được tính vào CLS nếu xảy ra chuyển động không mong muốn. 
+Nếu một phần tử mới được thêm vào DOM hoặc một phần tử hiện có thay đổi kích thước, 
+thì phần tử đó sẽ không được tính vào sự thay đổi bố cục nếu các phần tử được tải duy trì vị trí của chúng. Nhắm mục tiêu CLS nhỏ hơn 0,1.
+
+<Image
+  alt={`Cumulative Layout Shift (CLS) Chỉ số Dịch chuyển bố cục tích lũy (CLS) tốt là chỉ số có sự thay đổi bố cục hầu như không dễ nhận thấy. 
+  Theo Google, hãy nhắm đến chỉ số dưới 0,1.`}
+  src={`/images/core-web-vitals/CLS1.png`}
+  width={1440}
+  height={960}
+/>
+
+## Cải thiện hiệu suất trang web để tăng thứ hạng trên Google
+Cải thiện các chỉ số quan trọng giúp trang web của bạn xếp hạng cao hơn so với các đối thủ cạnh tranh. 
+Hãy xem các chiến lược để cải thiện Sức mạnh Web cốt lõi của bạn: kết xuất trước nội dung, tối ưu hóa hình ảnh và tối ưu hóa phông chữ.
+
+<Image
+  alt={`Các chỉ số tạo nên Core Web Vitals: Largest Contentful Paint, First Input Delay, và Cumulative Layout Shift. Ngoài các tín hiệu trước đó, 
+  giờ đây chúng sẽ được xem xét để xác định xếp hạng tổng thể trên Google Tìm kiếm của bạn.`}
+  src={`/images/core-web-vitals/LCP-FID-CLS.png`}
+  width={1080}
+  height={503}
+/>
+
+### Kết xuất trước Nội dung (Pre-rendering Content)
+Một trong những điều đầu tiên bạn có thể làm để tối ưu hóa SEO và cải thiện Core Web Vitals là kết xuất trước nội dung của bạn. 
+Bằng cách kết xuất trước nội dung, bạn có thể tạo trước HTML trên máy chủ cho mỗi trang để yêu cầu ban đầu chứa đánh dấu và Google có thể lập chỉ mục ngay lập tức.
+Lưu ý: Next.js hiển thị trước mọi trang theo mặc định, tối đa hóa hiệu suất và SEO.
+Đúng là Google có thể thu thập dữ liệu JavaScript cho các ứng dụng được hiển thị phía máy khách. 
+Tuy nhiên, họ khuyên bạn nên sử dụng phía máy chủ hoặc kết xuất trước để không chỉ làm cho trang web của bạn nhanh hơn đối với người dùng và trình thu thập thông tin mà còn để giải thích cho những bot không sử dụng JavaScript. 
+Các dịch vụ nhằm thêm kết xuất trước trên đầu các ứng dụng một trang có thể sẽ dẫn đến Core Web Vitals kém hơn.
+
+### Tối ưu hóa Hình ảnh (Image Optimization)
+Có một số cách để tối ưu hóa hình ảnh của bạn để cải thiện Core Web Vitals và SEO.
+- Sử dụng các thuộc tính `height` và `width` trên thành phần `Image` của bạn trong phần tử Next.js hoặc `<img>` trong HTML để ngăn thay đổi bố cục. Việc thêm các thuộc tính này vào đánh dấu của bạn sẽ cho trình duyệt biết lượng không gian cần phân bổ.
+- Lazy-load hình ảnh khi chúng vào chế độ xem.
+- Sử dụng các định dạng hình ảnh hiện đại (WebP, AVIF).
+- Cung cấp hình ảnh có kích thước chính xác bằng `srcset`.
+- Cung cấp trình giữ chỗ làm mờ.
+
+### Tối ưu hóa Font chữ (Font Optimization)
+Tám mươi hai phần trăm số trang trên máy tính để bàn sử dụng Font chữ web. Dưới đây là một số mẹo để cải thiện Core Web Vitals của bạn khi tải Font chữ:
+- Sử dụng một Font chữ có thể thay đổi để bạn sẽ chỉ có một tệp chứa mọi chiều rộng, trọng lượng và kiểu Font chữ mà bạn lựa chọn.
+- Kết nối trước với tệp Font chữ của bạn trong phần đầu của tài liệu HTML và xác định nó trong CSS của bạn.
+- Tự lưu trữ Font chữ của bạn thay vì phụ thuộc vào Font chữ của Google.
+- Sử dụng `font-display: optional` để ngăn thay đổi bố cục (CLS).
+- Có Font chữ dự phòng trong trường hợp không tải được lựa chọn ban đầu.
+
+## Làm thế nào để đo lường Core Web Vitals và hiểu cách tính điểm xếp hạng
+
+Sau khi thực hiện các cải tiến cho trang web của bạn, sẽ có lợi khi đo lường trang web của bạn đang hoạt động như thế nào. 
+Google Lighthouse có sẵn để kiểm tra một trang web trong năm lĩnh vực chính: hiệu suất, các phương pháp hay nhất, khả năng truy cập, SEO và Ứng dụng web tiến bộ (PWA). 
+Core Web Vitals là một phần chính của phân tích hiệu suất.
+
+Nếu bạn đang Deloy Project của bạn trên Vercel, thì Vercel Analytics đưa Lighthouse tiến thêm một bước nữa bằng cách cung cấp tính năng giám sát người dùng thực và chỉ định Điểm trải nghiệm thực (RES). 
+Điểm số này cung cấp cho bạn một bản kiểm tra tình trạng tổng thể của Core Web Vitals mà người dùng của bạn trải nghiệm.
+
+<Image
+  alt={`Vercel Analytics`}
+  src={`/images/core-web-vitals/vercel-analytics.png`}
+  width={1920}
+  height={1343}
+/>
+
+Dựa trên các chỉ số này, bạn có thể xem liệu một hồi quy hiệu suất có được giới thiệu vào bất kỳ thời điểm nào hay không và ngay lập tức hoàn nguyên về cam kết trước đó.
+Ngoài ra, bạn có thể thấy bảng phân tích của từng chỉ số quan trọng và các đường truyền khác nhau bên trong ứng dụng của bạn. Điều này cho phép bạn phân tích và cải thiện SEO và hiệu suất của trang web của bạn.
+Để biết thêm thông tin, hãy xem hướng dẫn này trên [Core Web Vitals của Google](https://web.dev/vitals/). Để bắt đầu đo lường hiệu suất trang web của bạn ngay hôm nay, 
+hãy bật [Vercel Analytics](https://vercel.com/analytics) cho bất kỳ ứng dụng Next.js, Nuxt hoặc Gatsby nào.
+
+Bài viết được dịch từ [Vercel's Blog](https://vercel.com/)

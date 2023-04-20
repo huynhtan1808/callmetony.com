@@ -1,0 +1,176 @@
+---
+title: 'Những điều mình đã học được khi xây dựng Next.js Apps'
+publishedAt: '2021-06-01'
+summary: 'CSS Modules, Font Loading, Polyfills, Dynamic Imports, MDX, and more!'
+---
+
+Mình đã dành rất nhiều thời gian trong 4 tháng qua để tạo ứng dụng [Next.js](https://nextjs.org/) cho cả công việc và cá nhân.
+
+- Mình đã chuyển trang cá nhân của mình từ Wordpress sang Next.js + MDX.
+- Trang web của GET Express đang được xây dựng lại với Next.js.
+
+Trong suốt quá trình đó, Mình đã thực sự fall in ❤  with Next.js và hệ sinh thái của nó.
+Đây là một số điều Mình đã học được.
+
+## CSS Modules
+
+Mình đã làm việc với CSS, Sass, CSS-in-JS và bây giờ là CSS Modules. 
+Đối với hầu hết các ứng dụng, Mình khuyên bạn nên sử dụng CSS Modules.
+
+CSS Modules ngăn chặn xung đột đặt tên và giúp bạn không tải quá nhiều kiểu. Chúng được [tích hợp trực tiếp vào Next.js], giúp bạn dễ dàng bắt đầu
+
+## Font Loading
+
+Bằng cách sử dụng `@font-face` kết hợp với thuộc tính `font-display`, Mình có thể ngăn chặn FOUT (Flash of Unstyled Text) và FOIT (Flash of Invisible Text).
+
+```css
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: optional;
+  src: url(/fonts/inter-var-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+```
+Hơn nữa, Mình có thể [tải trước](https://web.dev/preload-critical-assets/) tệp font chữ đã được tối ưu hóa trong phần Head của Document.
+
+```js:pages/_document.js
+class MyDocument extends Document {
+  render() {
+    return (
+      <Html lang="en">
+        <Head>
+          <link
+            rel="preload"
+            href="/fonts/inter-var-latin.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
+}
+
+export default MyDocument;
+```
+**Cập nhật**: Để biết thêm thông tin, hãy xem [Font chữ Web vào năm 2021](https://tanhuynh.io/blog/web-fonts-nam-2021).
+
+## Dynamic Imports and Testing
+
+Có khả năng khi scaling ứng dụng Next.js, bạn sẽ muốn sử dụng một External Package mà không hoạt động tốt server-side rendered. Với mình thì package này là [react-select](https://react-select.com/).
+
+Khi SSR thành phần này, nó chỉ đơn giản là không hoạt động trong Safari. Cho đến khi lỗi đó được sửa, Mình cần một giải pháp thay thế. 
+Nhờ vào Next's [Dynamic Imports](https://nextjs.org/docs/#dynamic-import), thật dễ dàng import component và tắt SSR.
+
+```jsx
+import dynamic from 'next/dynamic';
+
+const ReactSelectNoSSR = dynamic(() => import('../components/select'), {
+  ssr: false
+});
+
+export default () => (
+  <>
+    <Header />
+    <ReactSelectNoSSR />
+    <Footer />
+  </>
+);
+```
+Khi mọi thứ hoạt động ổn, chúng ta có thể thêm loading placeholder để làm trải nghiệm người dùng tốt hơn.
+
+```jsx
+const ReactSelectNoSSR = dynamic(() => import('../components/select'), {
+  loading: () => <Input />,
+  ssr: false
+});
+```
+Tuyệt vời 🎉  ok, giờ làm sao để test đây?
+
+Mình hay dùng [Jest](https://jestjs.io/), một testing libary. Hỗ trợ Dynamic Import do Next.js cung cấp **không cho** thấy cách tải trước các components được dynamic import trong môi trường của Jest. Tuy nhiên, nhờ [jest-next-dynamic](https://github.com/FormidableLabs/jest-next-dynamic), chúng ta có thể hiển thị đầy đủ tree component thay vì loading placeholder. Ngon lành!
+
+Bạn sẽ cần add [babel-plugin-dynamic-import-node](https://www.npmjs.com/package/babel-plugin-dynamic-import-node) vào `.babelrc`.
+
+```js:.babelrc
+{
+  "plugins": ["babel-plugin-dynamic-import-node"]
+}
+```
+
+Then, you can use `preloadAll()` to render the component instead of the loading placeholder.
+
+```jsx
+import preloadAll from 'jest-next-dynamic';
+import ReactSelect from './select';
+
+beforeAll(async () => {
+  await preloadAll();
+});
+```
+## MDX
+
+[Portfolio của mình](https://github.com/tanhuynh1808/tanhuynh.io) đã thay đổi khá nhiều từ khi chỉ là trang HTML & CSS tĩnh. Sau đó, mình đổi sang dùng [Wordpress](https://wordpress.com/) 
+để tiện trong việc quản lý nội dung. Mọi thứ rất ổn cho đến khi mình muốn tùy ý thay đổi toàn bộ giao diện để thân thiện với người dùng khi đọc blog của mình hơn, đồng thời để mình luyện tập code Javascript, cho nên mình 
+đã chuyển sang Next.js và MDX.
+
+Với [MDX](https://github.com/mdx-js/mdx), mình có thể sử dụng JSX components ngay trong Markdown một các dễ dàng. Với các này, nếu như mình muốn tùy chỉnh một cái gì đó thì mọi thứ đơn giản như là import một React Component vậy.
+
+## Link Prefetching
+
+Để tối đa hóa performance, bạn có thể dùng `prefetch` [attribute](https://nextjs.org/docs#prefetching-pages) trên Next's `<link>` component. Điều này sẽ giúp cho trang tải ngay lập tức.
+Kể từ Next.js 8, `prefetch` sử dụng `<link rel = "preload">` thay vì thẻ `<script>`. Nó cũng chỉ bắt đầu tìm nạp trước sau khi tải về để cho phép trình duyệt quản lý tài nguyên.
+
+```jsx
+<Link prefetch href="/">
+  <a>Home</a>
+</Link>
+```
+
+## Polyfills
+
+Next.js hỗ trợ IE11 và tất cả các trình duyệt hiện đại (Edge, Firefox, Chrome, Safari, Opera).
+Tuy nhiên, có thể mã của riêng bạn hoặc các phần phụ thuộc NPM bên ngoài có thể sử dụng các tính năng không được hỗ trợ trong trình duyệt mục tiêu của bạn. Trong trường hợp này,
+bạn sẽ cần [thêm polyfills](https://nextjs.org/docs/basic-features/supported-baries-features#custom-polyfills).
+
+Bạn sẽ cần thêm top-level import cho polyfill cụ thể mà bạn cần trong Custom `<App>` hoặc component riêng lẻ.
+
+```js:pages/_app.js
+
+// Add your polyfills here or at the component level.
+// For example...
+// import 'resize-observer-polyfill'
+
+function MyApp({ Component, pageProps }) {
+  return <Component {...pageProps} />
+}
+
+export default MyApp
+```
+## Vercel
+
+[Vercel](https://vercel.com) là cách ** dễ nhất để triển khai ứng dụng ** mà mình từng sử dụng.
+Bắt đầu cực kì dễ dàng và GitHub integration của họ sẽ tự động triển khai ứng dụng của bạn theo các yêu cầu pull request và có link
+để bạn xem lại các thay đổi. Nếu mọi thứ có vẻ tốt, nó sẽ deploy thành prod khi PR được merged. Đơn giản nhỉ.
+
+Hệ sinh thái Vercel hoạt động cùng nhau rất tốt. [Dịch vụ Domain](https://vercel.com/domains) của họ cho phép bạn
+để mua tên miền từ command line. Mình chưa bao giờ có thể chuyển từ một ý tưởng thành một ứng dụng thực sự, được triển khai
+được lưu trữ trên một domain nhanh đến như vậy. Bản thân mình thậm chí đã có thể thiết lập chuyển tiếp email cho domain của mình và tạo `hi@tanhuynh.io` bằng cách sử dụng [randomvmx](https://improvmx.com/) 🎉
+
+## Where To Get Help
+
+Hỗ trợ từ cộng đồng Next.js và Vercel thật sự _fantastic_. Họ phản hồi rất nhanh từ email, cho tới bất kỳ hình thức liên hệ khác. 
+Phương pháp ưa thích của mình luôn là [Thảo luận trên GitHub](https://github.com/zeit/next.js/discussions). Tất cả
+câu hỏi và câu trả lời được lập chỉ mục, có thể tìm kiếm và dễ dàng tìm thấy. [Hướng dẫn](https://nextjs.org/learn/) và [docs](https://nextjs.org/docs) của họ cũng rất hay và được viết rất tốt, rất dễ hiểu.
+
+
+
+

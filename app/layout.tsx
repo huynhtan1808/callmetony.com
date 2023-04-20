@@ -1,31 +1,29 @@
 import './global.css';
 import clsx from 'clsx';
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
+import { Inter as FontSans } from "next/font/google"
 import Sidebar from '../components/sidebar';
 import { Analytics } from '@vercel/analytics/react';
 
-const kaisei = localFont({
-  src: '../public/fonts/kaisei-tokumin-latin-700-normal.woff2',
-  weight: '700',
-  variable: '--font-kaisei',
-  display: 'swap',
-});
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-inter",
+})
 
 export const metadata: Metadata = {
   title: {
-    default: 'Lee Robinson',
-    template: '%s | Lee Robinson',
+    default: 'Tony Huynh',
+    template: '%s | Tony Huynh',
   },
   description: 'Developer, writer, and creator.',
   openGraph: {
-    title: 'Lee Robinson',
+    title: 'Tony Huynh',
     description: 'Developer, writer, and creator.',
-    url: 'https://leerob.io',
-    siteName: 'Lee Robinson',
+    url: 'https://callmetony.com',
+    siteName: 'Tony Huynh',
     images: [
       {
-        url: 'https://leerob.io/og.jpg',
+        url: 'https://callmetony.com/og.jpg',
         width: 1920,
         height: 1080,
       },
@@ -45,7 +43,7 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: 'Lee Robinson',
+    title: 'Tony Huynh',
     card: 'summary_large_image',
   },
   icons: {
@@ -67,7 +65,7 @@ export default function RootLayout({
       lang="en"
       className={clsx(
         'text-black bg-white dark:text-white dark:bg-[#111010]',
-        kaisei.variable
+        fontSans.variable
       )}
     >
       <body className="antialiased max-w-4xl mb-40 flex flex-col md:flex-row mx-4 mt-8 md:mt-20 lg:mt-32 lg:mx-auto">

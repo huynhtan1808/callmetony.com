@@ -1,22 +1,18 @@
 import me from '../app/avatar.jpg';
 
-export const name = 'Lee Robinson';
+export const name = 'Tony Huynh';
 export const avatar = me;
 export const about = () => {
   return (
     <>
-      Hey, I'm Lee. I'm the <b>VP of Developer Experience at Vercel</b> where my
-      team helps developers build a faster web.
+    Founder of <a href="https://onepixelmedia.com">One Pixel Media</a>
     </>
   );
 };
 export const bio = () => {
   return (
     <>
-      I'm a Next.js contributor and help lead our open-source communities. I'm
-      passionate about frontend development and have created courses on React,
-      Next.js, and web development. I'm an advisor and investor in early stage
-      startups.
+    I am a designer, developer, and founder of One Pixel Media, a digital marketing agency specialising in design, development and branding.
     </>
   );
 };

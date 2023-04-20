@@ -1,0 +1,104 @@
+---
+title: 'Học CSS Animations bằng Ví dụ'
+publishedAt: '2021-05-16'
+summary: 'Hướng dẫn tạo Logo hiệu ứng xoáy một cách nhanh chóng và dễ dàng bằng CSS Animations.'
+---
+
+Mình liên tục lấy cảm hứng từ các trang web có thiết kế sáng tạo. Mình thấy rất nhiều trang web có những CSS rất đẹp nên quyết tâm tìm hiểu thêm về cách tạo Animations chỉ bằng CSS.
+
+Mình thấy mình học tốt nhất bằng cách làm - tạo ra các ví dụ hữu hình để áp dụng các kỹ năng đã học. Nhiệm vụ của mình là tìm hiểu thêm về animations CSS. Để đạt được mục tiêu đó, mình đã nảy ra một ý tưởng thú vị là làm cho biểu tượng của Bang Iowa hoạt hình để xoáy như một cơn lốc xoáy.
+
+### Tạo Logo
+
+Logo của Cyclone vào cuối những năm 80 đến đầu những năm 90 đại diện cho một cơn lốc xoáy. Đây là cơ sở mà mình bắt đầu.
+
+<Image
+  alt={`Logo animations`}
+  src={`/images/hoc-css-animations-bang-vi-du/isu-logo.png`}
+  width={1003}
+  height={700}
+/>
+
+Mình đã đưa .png này vào Adobe Illustrator để tạo SVG [(Scalable Vector Graphic)](https://svgontheweb.com/). SVG trông sắc nét ở mọi độ phân giải màn hình, có kích thước tệp siêu nhỏ và có thể dễ dàng chỉnh sửa và sửa đổi. Mình đã lần theo đường dẫn của lốc xoáy như được thấy bên dưới và tạo tệp .svg.
+
+<Image
+  alt={`Adobe Illustrator SVG Creation`}
+  src={`/images/hoc-css-animations-bang-vi-du/illustrator.png`}
+  width={1593}
+  height={1319}
+/>
+
+### Tìm hiểu về Animations
+
+CSS3 Animations cho phép bạn thay đổi dần dần từ phong cách này sang phong cách khác. Để xác định cách các kiểu đó thay đổi tại một số thời điểm nhất định, chúng mình sử dụng quy tắc `@keyframes`. Trong ví dụ dưới đây, mình đã tạo một quy tắc `keyframes` có tên" color "để thay đổi bộ chọn` fill` thành các màu khác nhau dựa trên tỷ lệ phần trăm hoàn thành. Thao tác này sẽ thay đổi logo từ cardinal → gold → cardinal.
+
+```css
+@keyframes color {
+  0% {
+    fill: #99002f;
+  }
+  50% {
+    fill: #ffc426;
+  }
+  100% {
+    fill: #99002f;
+  }
+}
+```
+
+Chúng ta cần chỉ định phần tử mà chúng ta muốn liên kết animations này với. Sử dụng thuộc tính `animation`, chúng ta có thể áp dụng quy tắc` color` và định cấu hình cách nó chạy. Animations có sáu thuộc tính khác nhau:
+
+- `animation-name`
+- `animation-duration`
+- `animation-timing-function`
+- `animation-delay`
+- `animation-iteration-count`
+- `animation-direction`
+- `animation-fill-mode`
+
+Để biết thêm thông tin về chi tiết cụ thể của từng thuộc tính, hãy xem [tài liệu đầy đủ](https://www.w3schools.com/css/css3_animations.asp). Đây là cách chúng mình áp dụng các thuộc tính này để làm cho logo của chúng mình thay đổi màu sắc.
+
+```css
+svg path {
+  animation-name: color;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.85, 0.01, 0.25, 1);
+}
+```
+Bạn cũng có thể sử dụng phiên bản ngắn.
+
+```css
+svg path {
+  animation: color 2s infinite cubic-bezier(0.85, 0.01, 0.25, 1);
+}
+```
+Điều này áp dụng quy tắc "color" `@keyframes` cho đường dẫn của SVG sẽ lặp lại vĩnh viễn theo gia số 2 giây bằng cách sử dụng [khối-bezier](http://cubic-bezier.com/#.17,.67,.83,.67) chức năng định thời. Chúng ta có thể áp dụng ý tưởng tương tự này để làm cho logo quay. Đầu tiên, hãy tạo một quy tắc `@keyframes` khác để quay.
+
+```css
+@keyframes spin {
+  0% {
+    transform: rotateX(-20deg) rotateY(20deg);
+  }
+  100% {
+    transform: rotateX(-20deg) rotateY(740deg);
+  }
+}
+```
+Cuối cùng, hãy áp dụng quy tắc này cho Container của chúng ta.
+
+```css
+.container {
+  animation: spin 2s infinite cubic-bezier(0.85, 0.01, 0.25, 1);
+}
+```
+### Kết quả cuối cùng 🎉
+
+<Image
+  alt={`Logo animations`}
+  src={`/images/hoc-css-animations-bang-vi-du/isu-logo.gif`}
+  width={801}
+  height={201}
+/>
+
+Bạn có thể xem Code và ví dụ trực tiếp trên [CodePen](https://codepen.io/huynhtan1808/pen/bGqejqK)

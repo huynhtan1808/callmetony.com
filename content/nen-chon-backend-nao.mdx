@@ -1,0 +1,384 @@
+---
+title: "Front-End Developer Nên Chọn Back-End Nào?"
+publishedAt: '2021-05-14'
+summary: "Việc chọn một dịch vụ để lưu trữ dữ liệu có thể gây nhầm lẫn và choáng ngợp cho một lập trình viên Front-end. Hướng dẫn toàn diện này là một cuộc phiêu lưu của riêng bạn đi sâu vào việc tạo một Back- end phù hợp."
+image: '/images/backend/og.png'
+---
+
+Việc chọn một dịch vụ để lưu trữ dữ liệu có thể gây nhầm lẫn và quá sức cho một Front-End Developer.
+
+> Tất cả những từ viết tắt này là gì? Cách đặt tên dịch vụ của Amazon có mục đích không?.
+
+Những câu hỏi này và nhiều câu hỏi khác đang chờ đợi cuộc hành trình của bạn vào thế giới Back-End.
+
+Là một Front-End Developer chuyển sang full-stack, tôi đã dành nhiều thời gian hơn những gì tôi muốn thừa nhận để cố gắng tìm ra phần backend.
+Vì phần backend khó _visualize_ hơn, nên tôi đã phải vật lộn để hiểu cách các phần này khớp với nhau. May mắn thay, tôi đã sớm biết tôi không đơn độc. Có một nhóm hỗ trợ khi các kỹ sư front-end bối rối gặp nhau được gọi là Twitter.
+
+Hãy coi bài viết này là một tác phẩm "chọn cuộc phiêu lưu của riêng bạn". Tôi sẽ đặt câu hỏi về yêu cầu của bạn
+và sau đó trình bày một vài lựa chọn. Trước khi chúng ta có thể bắt đầu cuộc hành trình của mình, trước tiên tôi phải giải thích những điều cơ bản. Bạn có thể
+cũng có thể chuyển trực tiếp đến [danh sách các dịch vụ] (/ blog / backend # list-of-services).
+
+## Mục lục
+
+- [Kiến thức cơ bản về backend](/blog/nen-chon-backend-nao#backend-basics)
+- [Bạn có cần cơ sở dữ liệu?](/blog/nen-chon-backend-nao#bạn-có-cần-cơ-sở-dữ-liệu-không)
+- [Giải pháp Low Code](/blog/nen-chon-backend-nao#giải-pháp-low-code)
+- [Điều khoản cần hiểu](/blog/nen-chon-backend-nao#điều-khoản-cần-hiểu)
+  - [SQL/NoSQL](/blog/nen-chon-backend-nao#sqlnosql)
+  - [GraphQL/REST](/blog/nen-chon-backend-nao#graphqlrest)
+  - [Authentication/Authorization](/blog/nen-chon-backend-nao#authenticationauthorization)
+  - [Hosted/Self-Hosted](/blog/nen-chon-backend-nao#hostedself-hosted)
+  - [Serverless](/blog/nen-chon-backend-nao#serverless)
+  - [Data Modeling](/blog/nen-chon-backend-nao#data-modeling)
+- [Levels of Abstraction](/blog/nen-chon-backend-nao#levels-of-abstraction)
+- [Danh sách dịch vụ](/blog/nen-chon-backend-nao#danh-sách-dịch-vụ)
+  - [Backend (Dịch vụ)](/blog/nen-chon-backend-nao#backend-dịch-vụ)
+    - [Firebase](/blog/nen-chon-backend-nao#firebase)
+    - [Hasura](/blog/nen-chon-backend-nao#hasura)
+  - [Xây dựng backend của riêng bạn](/blog/nen-chon-backend-nao#xây-dựng-chương-trình-backend-của-riêng-bạn)
+    - [Prisma](/blog/nen-chon-backend-nao#prima)
+  - [Các dịch vụ khác](/blog/nen-chon-backend-nao#các-dịch-vụ-khác)
+- [Bạn có nên sử dụng CMS không?](/blog/nen-chon-backend-nao#bạn-có-nên-sử-dụng-cms-không)
+- [Bắt đầu từ đầu](/blog/nen-chon-backend-nao#bắt-đầu-từ-số-không)
+- [Kết luận/Tài nguyên](/blog/nen-chon-backend-nao#kết-luậntài-nguyên)
+
+## Backend Basics
+
+Vậy thì tóm lại ** Back-End ** là gì mà nghe ghê gớm vậy?
+Bạn có thể hiểu nó như sau:
+
+- Bạn cần một nơi để lưu trữ dữ liệu ([Database](https://dataguide.prisma.io/intro/what-are-databases))
+- Bạn cần một phương pháp truy xuất dữ liệu ([API](https://en.wikipedia.org/wiki/Application_programming_interface))
+
+Là một kỹ sư front-end, chắc hẳn bạn đã từng làm việc với các API. Chúng cho phép bạn tìm nạp dữ liệu từ một số cơ sở dữ liệu, ở đâu đó.
+Trên một dòng thời gian đủ dài, cuối cùng bạn sẽ cần phải xây dựng API của riêng mình hoặc
+làm việc với một cơ sở mã hiện có có một back-end. Điều này đưa chúng tôi đến câu hỏi đầu tiên của chúng tôi.
+
+## Bạn có cần cơ sở dữ liệu không?
+
+Bạn cần một nơi để lưu trữ dữ liệu, phải không? Dưới đây là một số câu hỏi cần xem xét:
+
+- Dữ liệu có thể đi chung với code không?
+- Dữ liệu có thể được theo dõi với source control không?
+- Những người không rành về kỹ thuật có cần sửa đổi dữ liệu không?
+- Bạn có cần các cấp độ truy cập khác nhau không?
+
+Nếu bạn có thể lưu trữ dữ liệu bằng mã của mình trong [source control](https://aws.amazon.com/devops/source-control),
+bạn có thể ổn khi sử dụng [Markdown](https://guides.github.com/features/mastering-markdown/)
+với [git](https://git-scm.com/) - Giống như [blog này](https://github.com/huynhtan1808/tanhuynh.io) sử dụng.
+Cũng cần nhắc lại rằng bạn _có thể_ sử dụng tệp JSON làm cơ sở dữ liệu giả nếu bạn thuộc loại này.
+
+Tuy nhiên, bạn có thể đang đọc bài viết này vì ** bạn cần một database**. Trước khi chúng ta bắt đầu tìm hiểu về cách bạn có thể tạo
+chương trình backend của riêng bạn, bạn cũng có thể xem xét một giải pháp mã thấp.
+
+## Giải pháp Low Code
+Vì bạn là Front-End Developer, bạn có thể sử dụng Giải pháp Low Code.
+Những công cụ Low Code này được cho là cách nhanh nhất để truy cập vào một số dữ liệu từ xa.
+
+Các ví dụ phổ biến bao gồm [Google Sheets](https://github.com/franciscop/use-spreadsheet) hoặc [Airtable](https://www.gatsbyjs.org/packages/gatsby-source-airtable/)
+như một cơ sở dữ liệu. Có các dịch vụ khác cung cấp [phần tóm tắt API](https://nocodeapi.com/) trên nhiều nguồn dữ liệu khác nhau.
+
+<ProsCard
+  title = "Low Code"
+  pros = {[
+    'Bạn rất quen thuộc với bảng tính',
+    'Bạn chỉ có hiểu biết cơ bản về phát triển web',
+    'Bạn muốn giải pháp nhanh nhất có thể',
+    'Bạn cần cộng tác với nhiều người trong việc nhập dữ liệu'
+  ]}
+/>
+
+<ConsCard
+  title = "Low Code"
+  cons = {[
+    'Khả năng cần thay đổi dịch vụ trên quy mô lớn hơn',
+    'Một số công cụ mã thấp yêu cầu gói trả phí'
+  ]}
+/>
+
+
+## Điều khoản cần hiểu
+
+Được rồi, vì vậy bạn cần một cơ sở dữ liệu và nó sẽ yêu cầu code.
+Trước tiên, tôi cần giải thích một số thuật ngữ mà bạn có thể sẽ gặp phải.
+
+### SQL/NoSQL
+
+Cơ sở dữ liệu SQL chứa [dữ liệu quan hệ](https://dataguide.prisma.io/intro/comparing-database-types#relational-databases-working-with-tables-as-a-standard-solution-to-organize-well-tructured-dataauthentication). Hãy xem xét một trang web truyền thông xã hội có bảng dành cho `users` và `posts`.
+Mỗi người dùng đại diện cho một hàng trong bảng `users`.
+Mỗi người dùng có thể có nhiều `posts` khác nhau. Có sự liên kết giữa một bài đăng và người dùng.
+Các liên kết này giúp bạn dễ dàng tra cứu các phần dữ liệu khác nhau thông qua các truy vấn.
+
+Cơ sở dữ liệu NoSQL (nói chung) là hướng tài liệu. Không giống như cơ sở dữ liệu SQL, không có bảng hoặc hàng.
+Thay vào đó, bạn lưu trữ dữ liệu trong các tài liệu, được sắp xếp thành các bộ sưu tập.
+Ví dụ: trong [Firestore](https://firebase.google.com/docs/firestore/data-model) mỗi tài liệu chứa một tập hợp các cặp khóa-giá trị.
+Đây là một lựa chọn tuyệt vời cho các bộ sưu tập lớn các tài liệu nhỏ.
+
+### GraphQL/REST
+
+API cho phép các chương trình nói chuyện với nhau. [REST](https://restfulapi.net/) và [GraphQL](https://graphql.org/learn/) chỉ đơn giản là hai cách khác nhau để tìm nạp dữ liệu. Ví dụ, đây là một
+Yêu cầu `GET` để lấy số lượt xem cho một bài đăng trên blog.
+
+```bash
+$ curl https://tanhuynh.io/api/page-views?id=databases
+
+{"total": 1234}
+```
+
+GraphQL là một mã nguồn mở [đặc biệt](https://graphql.github.io/graphql-spec/June2018/) cho cách truy vấn các API của bạn.
+Chuyển đổi ví dụ trước đó từ REST sang truy vấn GraphQL có thể trông như thế này.
+
+```graphql
+{
+  post (id: "databases") {
+    views
+  }
+}
+```
+
+Nếu bạn muốn tìm hiểu thêm, [đây là một tài nguyên tuyệt vời](https://hasura.io/learn/graphql/intro-graphql/graphql-vs-rest/).
+
+### Authentication/Authorization
+
+[Authentication](https://dataguide.prisma.io/postgresql/authentication-and-authorization/intro-to-authn-and-authz#what-are-authentication-and-authorization) xác minh người dùng là ai, trong khi [authorization](https://dataguide.prisma.io/postgresql/authentication-and-authorization/intro-to-authn-and-authz#what-are-authentication-and-authorization) xác minh những gì họ có quyền truy cập.
+Bạn sẽ thường thấy điều này được viết tắt là AuthN (Xác thực) và AuthZ (Ủy quyền).
+
+Nếu bạn đang xây dựng bất kỳ ứng dụng nào có người dùng hoặc yêu cầu hạn chế quyền truy cập vào một số khu vực nhất định, bạn sẽ cần xem xét cả hai điều này.
+
+### Hosted/Self-Hosted
+
+Cơ sở dữ liệu của bạn có thể được lưu trữ (Hosted, do người khác quản lý) hoặc tự lưu trữ (Self-Hosted).
+Khi các dịch vụ Backend là mã nguồn mở, điều đó thường có nghĩa là có một tùy chọn để tự lưu trữ.
+
+Nếu bạn không muốn xử lý cơ sở hạ tầng, hãy sử dụng dịch vụ được lưu trữ.
+
+### Serverless
+
+Serverless cho phép bạn viết và triển khai mã mà không phải lo lắng về cơ sở hạ tầng bên dưới.
+Bạn chỉ thanh toán khi mã của bạn chạy. Với một máy chủ truyền thống, nó luôn chạy.
+Nói chung, serverless nên bảo trì ít hơn. Tuy nhiên, có [sự đánh đổi](https://www.serverless.com/blog/when-why-not-use-serverless).
+
+Điều đáng nói là cách bạn triển khai front-end có thể ảnh hưởng đến dịch vụ back-end nào mà bạn chọn.
+Ví dụ: nếu bạn sử dụng [Next.js](/blog/hoc-nextjs) và kết xuất phía máy chủ, mỗi trang sẽ tạo ra một [chức năng không có máy chủ](https://www.pubnub.com/blog/what-is-a-serverless-function/).
+Ở quy mô đủ lớn, bạn sẽ gặp phải các vấn đề khi có quá nhiều kết nối mở đến cơ sở dữ liệu của bạn. Một giải pháp chung
+vì đây là kết nối tổng hợp. Để biết thêm thông tin, hãy xem [tài liệu triển khai của Prisma](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/deployment).
+
+###  Data Modeling
+
+Khi tìm hiểu về cơ sở dữ liệu, bạn có thể nghe thấy các thuật ngữ như [one-to-many](<https://en.wikipedia.org/wiki/One-to-many_(data_model)>)
+và [many-to-many](<https://en.wikipedia.org/wiki/Many-to-many_(data_model)>). Đây là những cách mô hình hóa các mối quan hệ cơ sở dữ liệu của bạn.
+[Chuẩn hóa cơ sở dữ liệu](https://dataguide.prisma.io/intro/intro-to-schemas) là
+cách bạn tổ chức cơ sở dữ liệu thành các bảng và cột.
+
+## Levels of Abstraction
+
+Mỗi tình huống là duy nhất. Có _ nhiều_ công cụ tồn tại để giải quyết cùng một vấn đề. Bằng cách hiểu những gì bạn đang tìm kiếm,
+nó sẽ giúp bạn chọn giải pháp phù hợp. Trước tiên, hãy hiểu _ những gì_ bạn đang cố gắng xây dựng.
+
+- Bạn đang xây dựng Backend này cho chính mình?
+- Người khác có cần sử dụng/hỗ trợ nó không?
+- Bạn đang cố gắng xây dựng [Minimum Viable Product (MVP)](https://en.wikipedia.org/wiki/Minimum_viable_product)?
+
+Cá nhân tôi thích thử nghiệm các công nghệ mới khi tạo các dự án cá nhân. Nếu tôi là
+chọn một công cụ cho công việc hàng ngày của tôi, tôi có thể sẽ mặc định là một công cụ được chấp nhận tốt trong ngành và có
+hỗ trợ mạnh mẽ. Có nhiều quyền kiểm soát hơn khi chọn Backend khi bạn là người sáng lập một mình xây dựng toàn bộ
+công nghệ cao cho mình. Khi bạn giới thiệu các kỹ sư khác vào hỗn hợp, mọi thứ trở nên phức tạp hơn.
+
+Nếu bạn cần một cái gì đó nhanh chóng, bạn sẽ muốn một cái gì đó trừu tượng ở cấp độ cao hơn. Các dịch vụ này thường cung cấp một ứng dụng khách hoặc API
+ra khỏi hộp giúp giảm số lượng mã soạn sẵn bạn cần viết. Điều này thường được gọi là
+tự động hóa phần [CRUD (Create, read, update and delete)](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) trong phần Backend của bạn.
+
+Giả sử bạn muốn thứ gì đó cao cấp hơn, lý tưởng nhất là với một trang web hoặc giao diện để quản lý dữ liệu của bạn.
+Nếu bạn muốn kiểm soát hoàn toàn, bạn có thể cân nhắc [xây dựng của riêng bạn] (/ blog / backend # build-your-own-backend).
+
+## Danh sách Dịch vụ
+
+Tôi đã lấy nguồn từ cộng đồng một danh sách các dịch vụ mà bạn có thể cân nhắc sử dụng. Dưới đây, tôi sẽ cung cấp thêm thông tin chi tiết về một số dịch vụ mà tôi biết rõ.
+Thực tế là mỗi dịch vụ được liệt kê ở đây đều có sự cân bằng của riêng nó. Hy vọng rằng điều này cung cấp cho bạn một cái nhìn tổng quan cấp cao để nghiên cứu thêm.
+Cũng cần nhắc lại rằng dịch vụ mà bạn đã biết rõ có thể là sự lựa chọn tốt nhất của bạn.
+Đây là một số câu hỏi cần xem xét.
+
+- Phần Backend của bạn có cần được xây dựng trên công nghệ mã nguồn mở không?
+- Bạn cảm thấy thoải mái với mức độ khóa nhà cung cấp nào?
+- Có những cân nhắc về bảo mật mà công ty / khách hàng của bạn có không?
+- Mức độ bạn muốn xây dựng bản thân so với dựa vào dịch vụ là bao nhiêu?
+- Bạn có cần đăng nhập mạng xã hội không? (Đăng nhập bằng Google, Facebook, v.v.)
+- Bạn có cơ sở dữ liệu hiện có mà bạn đang cố gắng cải thiện quyền truy cập vào không?
+
+### Backend (Dịch vụ)
+
+Đây là các dịch vụ (thường) được quản lý tự động tạo mã dựa trên [database schema](https://www.youtube.com/watch?v=3BZz8R7mqu0) của bạn.
+Bạn có thể xem những giải pháp này được gọi là giải pháp "trong hộp". Ví dụ: Hasura cung cấp API GraphQL trong một hộp như một phần của nền tảng.
+
+- ✅ & nbsp; Có, hoặc được đưa trực tiếp vào nền tảng
+- ⛔️ & nbsp; Không được hỗ trợ hoặc có sẵn
+- 🚧 & nbsp; Yêu cầu một số công việc
+
+| Tên | Loại | Mã nguồn mở | Tùy chọn tự lưu trữ | Đã bao gồm AuthN | GraphQL |
+| ---------------------------------------------- | -------- | ----------- | ------------------ | -------------- | ------- |
+| [Firebase](https://firebase.google.com/) | NoSQL | ⛔️ | ⛔️ | ✅ | ⛔️ |
+| [MongoDB](https://www.mongodb.com/) | NoSQL | ✅ | ✅ | ✅ | ⛔️ |
+| [Fauna](https://fauna.com/) | NoSQL | ⛔️ | ⛔️ | ✅ | ✅ |
+| [Userbase](https://userbase.com/) | NoSQL | ✅ | ✅ | ✅ | ⛔️ |
+| [Hasura](https://hasura.io/) | Postgres | ✅ | ✅ | 🚧 | ✅ |
+| [Nhost](https://nhost.io/) | Postgres | ✅ | ✅ | ✅ | ✅ |
+| [Siêu dữ liệu](https://supabase.io/) | Postgres | ✅ | ✅ | ✅ | ⛔️ |
+| [Khuếch đại AWS](https://aws.amazon.com/amplify/) | Cả hai | ✅ | ✅ | ✅ | ✅ |
+
+### Firebase
+
+Firebase là một nền tảng được thiết lập tốt và đã được chứng minh. Nó có (được cho là) ​​trải nghiệm nhà phát triển tốt nhất so với bất kỳ giải pháp nào khác được liệt kê.
+
+<ProsCard
+  title = "Firebase"
+  pros = {[
+    'Bạn cần khởi chạy một ứng dụng nhanh chóng',
+    'Bạn muốn bao gồm xác thực',
+    'Bạn cần hỗ trợ đăng nhập xã hội',
+    'Bạn cần dữ liệu thời gian thực',
+    'Bạn muốn một cộng đồng thành lập với nhiều ví dụ'
+  ]}
+/>
+
+<ConsCard
+  title = "Firebase"
+  cons = {[
+    'Phần backend của bạn cần phải là mã nguồn mở',
+    'Bạn có dữ liệu rất quan hệ',
+    'Bạn không muốn bất kỳ loại khóa nhà cung cấp nào'
+  ]}
+/>
+
+**Tài nguyên**
+
+- Bạn có thể giảm nhẹ một số cơn đau không liên quan đến [chỉ mục tổng hợp](https://firebase.google.com/docs/firestore/query-data/index-overview).
+- [Dữ liệu quan hệ mô hình trong Firestore NoSQL](https://www.youtube.com/watch?v=jm66TSlVtcc)
+- [Chuyển sang Serverless với Next.js và Firebase](/blog/nextjs-firebase-serverless)
+
+### Hasura
+
+Hasura cho phép bạn tạo một API GraphQL tức thì dựa trên Postgres. Với [Hasura Cloud](https://hasura.io/cloud/), thật dễ dàng
+để đi từ một ý tưởng đến một API trực tiếp. Tôi thích rằng bạn có thể tạo các mô hình cơ sở dữ liệu của mình trực tiếp thông qua bảng điều khiển của chúng.
+
+Nếu bạn chưa xem Hasura kể từ khi họ ra mắt dịch vụ được quản lý của mình, hãy nhìn lại nó. Một trong những
+các vấn đề tôi gặp phải trước khi Hasura Cloud là [thử dùng](https://medium.com/faun/on-the-serverless-cold-start-problem-2fc0797da5cc) [Heroku] (https://heroku.com/ ) bậc miễn phí. Hasura Cloud ngăn chặn điều này trong khi vẫn còn
+trên bậc miễn phí.
+
+Mặc dù Hasura thường khuyến nghị sử dụng Auth0 để ủy quyền, nhưng bạn có thể [tự triển khai](https://hasura.io/docs/1.0/graphql/manual/auth/index.html).
+Nếu bạn muốn xác thực đi kèm với Hasura, hãy xem xét [Nhost](https://nhost.io/).
+
+<ProsCard
+  title = "Hasura"
+  pros = {[
+    'Bạn cần khởi chạy một ứng dụng nhanh chóng',
+    'Bạn muốn sử dụng GraphQL',
+    'Bạn cần một chiếc đồng hồ dễ dàng để mở rộng dịch vụ hiện có (Lược đồ từ xa)',
+    `Bạn chưa có cơ sở dữ liệu`
+  ]}
+/>
+
+<ConsCard
+  title = "Hasura"
+  cons = {[
+    'Bạn sẽ cần nhiều logic backend tùy chỉnh',
+    'Bạn muốn xác thực bao gồm zero-config'
+  ]}
+/>
+
+### Xây dựng chương trình backend của riêng bạn
+
+Đây là các thư viện và công cụ để xây dựng API và logic back-end của riêng bạn. Nói chung, tôi sẽ không giới thiệu những
+cho người mới bắt đầu tuyệt đối. Cá nhân tôi học tốt nhất bằng cách _doing_. Quá trình tham gia phát triển back-end của tôi đã thành công
+xây dựng các ứng dụng thực tế và thử các công nghệ khác nhau. Bạn muốn có một số chiến thắng nhanh chóng khi bắt đầu để bạn có thể
+cảm thấy như bạn đang tiến bộ.
+
+Khi bạn mất một mức độ trừu tượng, có những phần khác bạn cần phải xem xét.
+
+- Cơ sở người dùng của tôi được phân phối như thế nào?
+- Cơ sở dữ liệu/chương trình backend của tôi cần phải đáng tin cậy như thế nào?
+- Giải pháp cung cấp loại công cụ nào (ví dụ:[di chuyển cơ sở dữ liệu](https://www.alooma.com/blog/what-is-database-migration))
+
+Điều đáng nói là bạn có thể sử dụng [AWS RDS](https://aws.amazon.com/rds/) để tự lưu trữ bất kỳ cơ sở dữ liệu dựa trên SQL nào.
+Đó là [công nghệ đã được chứng minh](http://boringtechnology.club/) thậm chí có [tín dụng có sẵn](https://aws.amazon.com/about-aws/whats-new/2020/02/aws-launches-activate-founders-package/)
+dành cho người sáng lập / khởi nghiệp.
+
+| Tên | Loại | Mã nguồn mở | Tự lưu trữ? | Đã bao gồm AuthN | GraphQL |
+| -------------------------------------------------- ---------- | --------- | ----------- | ------------- | -------------- | ------- |
+| [AWS DynamoDB](https://aws.amazon.com/dynamodb/) | NoSQL | ✅ | ✅ | ⛔️ | ⛔️ |
+| [Prisma](https://prisma.io) | Dựa trên SQL | ✅ | ✅ | ⛔️ | ⛔️ |
+| [Prisma](https://prisma.io) + [Nexus](https://nexus.js.org/) | Dựa trên SQL | ✅ | ✅ | 🚧 | ✅ |
+
+_Honorable Mentions: Laravel, Rails. Tôi muốn tập trung vào JavaScript này._
+
+### Prisma
+
+Prisma cung cấp trình tạo truy vấn được tạo tự động và an toàn về kiểu dựa trên lược đồ cơ sở dữ liệu của bạn.
+Nó hiện hỗ trợ cơ sở dữ liệu PostgreSQL, MySQL và SQLite.
+
+Có các khung công tác như [Redwood](https://redwoodjs.com/) và [Blitz](https://blitzjs.com/) được xây dựng dựa trên Prisma.
+Nếu bạn muốn xây dựng API GraphQL với Prisma, bạn có thể ghép nối nó với [Nexus](https://nexus.js.org/). Nexus có [plug-in](https://nexus.js.org/docs/api-plugins)
+để xác thực / ủy quyền.
+
+<ProsCard
+  title = "Prisma"
+  pros = {[
+    'Bạn có một cơ sở dữ liệu hiện có',
+    'Bạn muốn sử dụng TypeScript',
+    'Bạn có dữ liệu quan hệ cao',
+    'Bạn muốn tự do lựa chọn bất kỳ giải pháp dựa trên SQL nào'
+  ]}
+/>
+
+<ConsCard
+  title = "Prisma"
+  cons = {[
+    'Bạn muốn một giải pháp cung cấp API cho bạn',
+    'Bạn không muốn lo lắng về việc tự lưu trữ'
+  ]}
+/>
+
+### Các dịch vụ khác
+
+Tôi chưa thử với các dịch vụ khác, nhưng đây là một số thông tin chung mà bạn có thể muốn biết:
+
+- MongoDB có thể hỗ trợ GraphQL với [Stitch](https://developer.mongodb.com/how-to/graphql-support-atlas-stitch)
+- Supabase vẫn đang trong giai đoạn alpha tại thời điểm viết bài này.
+- Nếu quan tâm đến Fauna, bạn có thể muốn tìm hiểu ngôn ngữ truy vấn của họ [FQL](https://fauna.com/blog/getting-started-with-fql-faunadbs-native-query-language-part-1 ).
+
+## Bạn có nên sử dụng CMS không?
+
+[Hệ thống quản lý nội dung (CMS)](https://en.wikipedia.org/wiki/Content_management_system)
+cho phép bạn quản lý việc tạo và sửa đổi dữ liệu của mình, dữ liệu này thường bao gồm cơ sở dữ liệu.
+Ví dụ: [WordPress](https://wordpress.org/) có thể sử dụng cơ sở dữ liệu MySQL để lưu trữ nội dung.
+Bạn nên sử dụng CMS hay chỉ sử dụng cơ sở dữ liệu trực tiếp? Thêm vài câu hỏi
+
+- Bạn đang muốn lưu trữ hình ảnh hoặc tài liệu?
+- Có bất kỳ người dùng không chuyên về kỹ thuật nào cần quản lý dữ liệu không?
+- Bạn có cần [bản địa hóa](https://www.w3.org/International/questions/qa-i18n) dữ liệu không?
+- Bạn có cần bản nháp/xem trước nội dung (như bài đăng trên blog) không?
+
+Nếu bạn trả lời có cho bất kỳ câu hỏi nào trong số đó, bạn có thể muốn [khám phá CMS](https://bejamas.io/blog/headless-cms/).
+
+## Bắt đầu từ số 0
+
+Một số nhà phát triển full-stack (thường có kinh nghiệm hơn) muốn toàn quyền kiểm soát cơ sở hạ tầng của họ và thích làm việc trực tiếp với cơ sở dữ liệu.
+Điều này thường đòi hỏi sự hiểu biết cơ bản hơn về back-end. Có toàn bộ sách về chủ đề này, bao gồm danh sách các từ thông dụng sau đây.
+
+- [Object-relational mappers (ORMs)](https://dataguide.prisma.io/types/relational/comparing-sql-query-builders-and-orms#what-are-orms)
+- [Manually sharing/replicating](<https://en.wikipedia.org/wiki/Shard_ (database_architecture)>)
+- [Scaling instances](https://aws.amazon.com/blogs/database/scaling-your-amazon-rds-instance-verently-and-horizodo/)
+- [Provisioning servers](https://www.redhat.com/en/topics/automation/what-is-provisinstall)
+- [Transactions](https://documentation.progress.com/output/ua/OpenEdge_latest/aswsp/what-is-a-database-transaction-3f.html) / [ACID](https://en.wikipedia.org/wiki/ACID)
+- [Containers](https://www.docker.com/why-docker)
+
+Đừng cảm thấy choáng ngợp. Là nhà phát triển front-end, chúng tôi biết rằng chúng tôi không cần biết _everything_. Cả front-end và back-end đều là những thứ phức tạp, dày đặc.
+Bắt đầu từ quy mô nhỏ, chăm chú học hỏi và bạn sẽ sớm tạo ra các APIs của riêng mình một cách dễ dàng.
+
+## Kết luận/Tài nguyên
+
+Bạn có thay đổi bất cứ điều gì không? Bạn có tài nguyên nào để học back-end không? Nếu có, hãy để lại bình luận bên dưới và tôi sẽ cập nhật danh sách này.
+
+- [Cách trở thành kỹ sư Back-End giỏi](https://www.youtube.com/watch?v=WFzQ2Ijr5fU)
+- [Máy ​​chủ web là gì và chúng hoạt động như thế nào?](https://www.youtube.com/watch?v=2B2_ghD-Xuk)
+- [Stack GraphQL tốt nhất cho Node.js](https://www.benawad.com/what-is-the-best-graphql-stack-for-nodejs/)
+- [Trình tạo mã GraphQL](https://graphql-code-generator.com/)

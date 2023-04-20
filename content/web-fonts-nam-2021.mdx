@@ -1,0 +1,145 @@
+---
+title: 'Web Fonts năm 2021' 
+publishedAt: '2021-05-14'
+summary: "Tìm hiểu các phương pháp hay nhất cho các trang web hiệu suất cao sử dụng web fonts, được cập nhật cho năm 2021."
+---
+
+Kiểu chữ chiếm 95% trong thiết kế web. Lựa chọn fonts của bạn có thể rất quan trọng đối với việc xây dựng thương hiệu, khả năng đọc và hiệu suất.
+
+Theo thời gian, các khuyến nghị sử dụng web fonts đã thay đổi khi các trình duyệt áp dụng các tiêu chuẩn mới. Bây giờ vào năm 2021, tôi muốn tìm hiểu các phương pháp hay nhất để sử dụng web fonts trên các trang web hiệu suất cao.
+
+## System Fonts
+Cách nhanh nhất để sử dụng web fonts là không có. Các trình duyệt bao gồm một tập hợp các fonts an toàn cho web (ví dụ: Arial, Georgia, Times New Roman) mà bạn có thể sử dụng theo mặc định.
+
+Sử dụng fonts an toàn cho web hoặc ngăn xếp fonts hệ thống sẽ là lựa chọn nhanh nhất.
+``` css
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
+  sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+```
+## Tại sao sử dụng Web Fonts?
+Nếu fonts hệ thống là lựa chọn nhanh nhất, tại sao web fonts lại tồn tại? Xây dựng thương hiệu, thiết kế cải tiến và tính nhất quán giữa các trình duyệt và thiết bị. 82% các trang web dành cho máy tính để bàn sử dụng web fonts.
+
+Hãy đề cập đến năm lĩnh vực khác nhau cho các web fonts hiệu suất cao và kết thúc với một đề xuất năm 2021.
+
+- Tự lưu trữ
+- Tải trước
+- Hiển thị fonts
+- Fonts có thể thay đổi
+- Thiết lập con
+
+## Tự lưu trữ
+
+Google Fonts chịu trách nhiệm cho 70% việc sử dụng fonts trên web. Với hơn 1000 fonts, chúng cung cấp khả năng truy cập dễ dàng vào fonts chất lượng, nhiều định dạng và mặc định hiệu quả (kết nối trước và hoán đổi).
+
+Tuy nhiên, Google Fonts không còn cần thiết nữa. Kể từ năm 2018, Google đã khuyên bạn nên tự lưu trữ để có hiệu suất tối ưu thông qua tải trước.
+
+Không còn bất kỳ lợi thế nào về bộ nhớ đệm nữa. Giả sử bạn đang sử dụng fonts "Roboto", đây là một fonts phổ biến trên Google Fonts. Rất có thể bạn đã truy cập một trang web khác bằng cách sử dụng "Roboto" và đã lưu vào bộ nhớ cache fonts.
+
+Kể từ tháng 10 năm 2020, Chrome không còn cho phép bộ nhớ cache được chia sẻ trên các trang web nữa. Safari đã hoạt động theo cách này kể từ năm 2013. "Roboto" sẽ được tải xuống lại cho mọi trang web, bất kể nó có được lưu vào bộ nhớ đệm hay không.
+
+Khi tự lưu trữ, hãy đảm bảo bạn lưu vào bộ đệm fonts của mình bằng tiêu đề HTTP Cache-Control. Immutable cho trình duyệt biết rằng tệp sẽ không bao giờ thay đổi. Khi một yêu cầu được đưa ra trong độ tuổi tối đa (1 tuổi), yêu cầu này sẽ tránh vòng vo để đảm bảo đó là nội dung mới nhất.
+
+```bash
+Cache-Control: public, immutable, max-age=31536000
+```
+
+Nếu bạn cần Google Fonts, hãy sử dụng những tối ưu hóa này. Với những thay đổi mới nhất trong API v2, bạn có thể điều chỉnh fonts cho phù hợp với người dùng và nền tảng cụ thể (bao gồm cả fonts có thể thay đổi).
+
+## Tải trước
+
+Trình duyệt chỉ định mức độ ưu tiên tải cho các loại tài nguyên khác nhau. Theo mặc định, CSS sẽ được tải trước tập lệnh và hình ảnh. Bạn có thể ảnh hưởng đến tầm quan trọng của tài nguyên bằng cách tải trước các tài sản quan trọng.
+
+Fonts được trình duyệt phát hiện muộn theo mặc định. Bằng cách tải trước, chúng tôi tìm nạp tệp fonts càng sớm càng tốt. Sau đó, trình duyệt lưu vào bộ nhớ cache của fonts làm cho nó có sẵn ngay lập tức.
+
+Tải trước có thể cải thiện các chỉ số hiệu suất như Thời gian tương tác và Sơn nội dung đầu tiên. Ví dụ: Shopify đã thấy sự cải thiện 50% (1,2 giây) trong First Contentful Paint, loại bỏ Flash of Invisible Text (FOIT) của họ.
+
+Tính đến năm 2020, 75% web fonts sử dụng WOFF2. Bạn có thể chỉ cần cái này. Ví dụ:
+
+```css
+<link
+	rel="preload"
+	href="/fonts/inter-var-latin.woff2"
+	as="font"
+	type="font/woff2"
+	crossOrigin="anonymous"
+/>
+```
+
+> Hỗ trợ: Tất cả các trình duyệt hiện đại ngoại trừ Firefox.
+
+## Fonts Display
+`font-display` cho phép bạn sửa đổi hành vi kết xuất của web fonts với các giá trị như tự động, hoán đổi, khối, dự phòng và tùy chọn. Khi tải web fonts, chúng tôi muốn ngăn chặn sự thay đổi bố cục. Điều này xảy ra theo hai cách:
+
+- Flash of Unstyled Text (FOUT) - Fonts dự phòng được hoán đổi bằng một fonts mới (ví dụ: hoán đổi).
+- Flash of Invisible Text (FOIT) - Văn bản ẩn được hiển thị trên trang cho đến khi một fonts mới được hiển thị (ví dụ: khối).
+
+Các trình duyệt hiện có chiến lược mặc định tương tự như chặn. Tùy chọn duy nhất loại bỏ sự thay đổi bố cục là tùy chọn. Kết hợp với các tối ưu hóa hiệu suất khác trong bài viết này, tùy chọn là lựa chọn tốt nhất của bạn.
+
+```css
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-display: optional;
+  src: url(/fonts/inter-var-latin.woff2) format('woff2');
+}
+```
+> Hỗ trợ: Tất cả các trình duyệt hiện đại
+
+## Variable Fonts
+Variable Fonts cho phép chúng ta kết hợp nhiều kiểu và độ đậm (ví dụ: đậm, nghiêng) vào một tệp fonts duy nhất.
+
+```css
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900; // Range of weights supported
+  font-display: optional;
+  src: url(/fonts/inter-var-latin.woff2) format('woff2');
+}
+```
+
+Bạn có thể thử các tùy chọn fonts có thể thay đổi khác nhau tại [đây](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide).
+
+> Hỗ trợ: Tất cả các trình duyệt hiện đại. Ngay cả API Google Fonts v2 cũng có hỗ trợ cho các fonts biến đổi.
+
+## Cài đặt con
+
+Tệp fonts chứa nhiều ngôn ngữ và glyphs, làm tăng kích thước tệp. Thiết lập con là loại bỏ các ký tự bạn không cần.
+
+Ví dụ: chúng tôi có thể sử dụng fonts Inter biến và tập hợp con cho các ngôn ngữ latin.
+
+```css
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900; // Range of weights supported
+  font-display: optional;
+  src: url(/fonts/inter-var-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+```
+## Phần kết luận
+
+1. Sử dụng một fonts có thể thay đổi
+2. Tải trước tệp fonts của bạn
+3. Tự lưu trữ thay vì Fonts Google
+4. Sử dụng `font-display: option` để ngăn thay đổi bố cục
+
+[Đây là ví dụ](https://github.com/huynhtan1808/tanhuynh.io) của một trang web triển khai tất cả các đề xuất này.
+
+## Tương lai
+
+Nếu bạn cần sử dụng `font-display: swap`, hỗ trợ trong tương lai cho [Ghi đè số liệu fonts](https://www.youtube.com/watch?t=176&v=Z6wjUOSh9Tk&feature=youtu.be) sẽ giảm bớt sự thay đổi bố cục khi hoán đổi .
+
+```css
+@font-face {
+  font-family: ...;
+  src: ...;
+  ascent-override: 80%;
+  descent-override: 20%;
+  line-gap-override: 0%;
+  ...;
+}
+```
