@@ -31,25 +31,28 @@ export default async function HomePage() {
           className="rounded-full grayscale"
           src={avatar}
           placeholder="blur"
-          width={80}
+          width={100}
           priority
         />
-        <div className="mt-8 md:mt-0 ml-0 md:ml-6 space-y-2 text-muted-100 dark:text-muted-100">
+        <div className="mt-8 md:mt-0 ml-0 md:ml-6 space-y-2 ">
+        
+        <h1 className="font-bold">{name}</h1>
+        <p className="mb-5 max-w-[460px] text-neutral-800 dark:text-muted-100">
+          {about()}
+        </p>
+        <p className="my-5 max-w-[600px] text-neutral-800 dark:text-neutral-200">
+          {bio()}
+        </p>
+        </div>
+      </div>
+
+      <div className="my-12 text-muted-100 dark:text-muted-100">
           <Link href="/blog" className="flex items-center">
             <ViewsIcon />
             {`${views.toLocaleString()} blog views all time`}
           </Link>
-        </div>
       </div>
-      <div className="mb-20">
-      <h1 className="font-bold">{name}</h1>
-      <p className="mb-5 max-w-[460px] text-neutral-800 dark:text-muted-100">
-        {about()}
-      </p>
-      <p className="my-5 max-w-[600px] text-neutral-800 dark:text-neutral-200">
-        {bio()}
-      </p>
-      </div>
+      
       <div className="space-y-4">
       <h2 className="mb-8">Work</h2>
 
@@ -61,11 +64,11 @@ export default async function HomePage() {
       >
         <div className="flex items-center justify-between">
           <div className="ml-3">
-            <p className="text-base">Hôm nay ăn gì?</p>
+            <p>Hôm nay ăn gì?</p>
             <p className="text-muted-100">Chatbot AI giúp vợ nấu ăn</p>
         </div>
         </div>
-        <p className="text-muted-100 text-base ">2023</p>
+        <p className="text-muted-100 text-base">2023</p>
       </a>
 
       <a
@@ -80,7 +83,7 @@ export default async function HomePage() {
             <p className="text-muted-100">My Digital Marketing Agency</p>
         </div>
         </div>
-        <p className="text-muted-100">2021 - now</p>
+        <p className="text-muted-100 text-base">2021 - now</p>
       </a>
       </div>
 
@@ -99,7 +102,7 @@ export default async function HomePage() {
             <p className="text-muted-100">What I've been reading</p>
         </div>
         </div>
-        <p className="text-muted-100">2023</p>
+        <p className="text-muted-100 text-base">2023</p>
       </a>
       
       <a
@@ -114,7 +117,7 @@ export default async function HomePage() {
             <p className="text-muted-100">What I've been watching</p>
         </div>
         </div>
-        <p className="text-muted-100">2023</p>
+        <p className="text-muted-100 text-base">2023</p>
       </a>
 
       <a
@@ -129,7 +132,7 @@ export default async function HomePage() {
             <p className="text-muted-100">The software I use</p>
         </div>
         </div>
-        <p className="text-muted-100">2023</p>
+        <p className="text-muted-100 text-base">2023</p>
       </a>
       </div>
 
