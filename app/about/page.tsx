@@ -1,7 +1,7 @@
 export default function AboutPage() {
   return (
     <section>
-      <h1 className="font-bold text-3xl ">About Me</h1>
+      <h1 className="font-bold text-xl">About Me</h1>
       <p className="my-5 text-neutral-800 dark:text-neutral-200">
         Hello, mình là Founder của One Pixel Media. Hy vọng với những kiến thức bổ ích mà mình truyền tải sẽ giúp cho các bạn có thể tự tạo nên cho mình một Cửa hàng online, một Blog cá nhân hay thậm chí một Website cho doanh nghiệp của bạn.
       </p>
