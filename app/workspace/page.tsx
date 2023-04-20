@@ -16,7 +16,6 @@ export default function Workspace() {
       <div className="prose prose-neutral dark:prose-invert">
         <h3 id="computer-office">Computer / Office</h3>
         <ul>
-          <li>16&quot; Macbook Pro (2020)</li>
           <li>13" Macbook Pro M1 2020</li>
           <li>29" LG Ultrawide 29WN600</li>
           <li>Logitech MX Master 2 Mouse</li>
