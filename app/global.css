@@ -11,6 +11,11 @@ html {
   min-width: 360px;
 }
 
+.text-base {
+  font-size: 0.875em;
+  line-height: 1.5rem;
+}
+
 .prose .anchor {
   @apply absolute invisible no-underline;
 

@@ -34,7 +34,7 @@ export default async function HomePage() {
           width={80}
           priority
         />
-        <div className="mt-8 md:mt-0 ml-0 md:ml-6 space-y-2 text-neutral-500 dark:text-neutral-400">
+        <div className="mt-8 md:mt-0 ml-0 md:ml-6 space-y-2 text-muted-100 dark:text-muted-100">
           <Link href="/blog" className="flex items-center">
             <ViewsIcon />
             {`${views.toLocaleString()} blog views all time`}
@@ -43,7 +43,7 @@ export default async function HomePage() {
       </div>
       <div className="mb-20">
       <h1 className="font-bold">{name}</h1>
-      <p className="mb-5 max-w-[460px] text-neutral-800 dark:text-neutral-500">
+      <p className="mb-5 max-w-[460px] text-neutral-800 dark:text-muted-100">
         {about()}
       </p>
       <p className="my-5 max-w-[600px] text-neutral-800 dark:text-neutral-200">
@@ -52,20 +52,6 @@ export default async function HomePage() {
       </div>
       <div className="space-y-4">
       <h2 className="mb-8">Work</h2>
-      <a
-      rel="noopener noreferrer"
-      target="_blank"
-      href="https://onepixelmedia.com"
-      className="flex w-full border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 no-underline items-center text-neutral-800 dark:text-neutral-200 hover:dark:bg-neutral-900 hover:bg-neutral-100 transition-all justify-between"
-      >
-        <div className="flex items-center justify-between">
-          <div className="ml-3">
-            <p>One Pixel Media</p>
-            <p className="text-neutral-500">Digital Marketing Agency</p>
-        </div>
-        </div>
-        <p className="text-neutral-500">2021</p>
-      </a>
 
       <a
       rel="noopener noreferrer"
@@ -75,14 +61,79 @@ export default async function HomePage() {
       >
         <div className="flex items-center justify-between">
           <div className="ml-3">
-            <p>Hôm nay ăn gì?</p>
-            <p className="text-neutral-500">Chatbot AI giúp vợ nấu ăn</p>
+            <p className="text-base">Hôm nay ăn gì?</p>
+            <p className="text-muted-100">Chatbot AI giúp vợ nấu ăn</p>
         </div>
         </div>
-        <p className="text-neutral-500">2023</p>
+        <p className="text-muted-100 text-base ">2023</p>
+      </a>
+
+      <a
+      rel="noopener noreferrer"
+      target="_blank"
+      href="https://onepixelmedia.com"
+      className="flex w-full border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 no-underline items-center text-neutral-800 dark:text-neutral-200 hover:dark:bg-neutral-900 hover:bg-neutral-100 transition-all justify-between"
+      >
+        <div className="flex items-center justify-between">
+          <div className="ml-3">
+            <p>One Pixel Media</p>
+            <p className="text-muted-100">My Digital Marketing Agency</p>
+        </div>
+        </div>
+        <p className="text-muted-100">2021 - now</p>
       </a>
       </div>
-      <ul className="flex flex-col md:flex-row mt-8 space-x-0 md:space-x-4 space-y-2 md:space-y-0 font-sm text-neutral-500 dark:text-neutral-400">
+
+      <div className="mt-20 space-y-4">
+      <h2 className="mb-8">Explore</h2>
+
+      <a
+      rel="noopener noreferrer"
+      target="_blank"
+      href="#"
+      className="flex w-full border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 no-underline items-center text-neutral-800 dark:text-neutral-200 hover:dark:bg-neutral-900 hover:bg-neutral-100 transition-all justify-between"
+      >
+        <div className="flex items-center justify-between">
+          <div className="ml-3">
+            <p>Reading</p>
+            <p className="text-muted-100">What I've been reading</p>
+        </div>
+        </div>
+        <p className="text-muted-100">2023</p>
+      </a>
+      
+      <a
+      rel="noopener noreferrer"
+      target="_blank"
+      href="#"
+      className="flex w-full border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 no-underline items-center text-neutral-800 dark:text-neutral-200 hover:dark:bg-neutral-900 hover:bg-neutral-100 transition-all justify-between"
+      >
+        <div className="flex items-center justify-between">
+          <div className="ml-3">
+            <p>Watching</p>
+            <p className="text-muted-100">What I've been watching</p>
+        </div>
+        </div>
+        <p className="text-muted-100">2023</p>
+      </a>
+
+      <a
+      rel="noopener noreferrer"
+      target="_blank"
+      href="#"
+      className="flex w-full border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 no-underline items-center text-neutral-800 dark:text-neutral-200 hover:dark:bg-neutral-900 hover:bg-neutral-100 transition-all justify-between"
+      >
+        <div className="flex items-center justify-between">
+          <div className="ml-3">
+            <p>My software stack</p>
+            <p className="text-muted-100">The software I use</p>
+        </div>
+        </div>
+        <p className="text-muted-100">2023</p>
+      </a>
+      </div>
+
+      <ul className="flex flex-col md:flex-row mt-20 space-x-0 md:space-x-4 space-y-2 md:space-y-0 font-sm text-muted-100 dark:text-muted-100">
         <li>
           <a
             className="flex items-center hover:text-neutral-700 dark:hover:text-neutral-200 transition-all"

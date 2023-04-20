@@ -54,7 +54,7 @@ export default function Tweet({
           className="author flex flex-col ml-4 !no-underline"
         >
           <span
-            className="flex items-center font-semibold !text-neutral-900 dark:!text-neutral-100 leading-5 tracking-tight"
+            className="flex items-center font-semibold !text-muted-500 dark:!text-neutral-100 leading-5 tracking-tight"
             title={author.name}
           >
             {author.name}
@@ -71,7 +71,7 @@ export default function Tweet({
             ) : null}
           </span>
           <span
-            className="text-sm !text-neutral-500 dark:!text-neutral-400 leading-4"
+            className="text-sm !text-muted-100 dark:!text-muted-100 leading-4"
             title={`@${author.username}`}
           >
             @{author.username}
@@ -121,7 +121,7 @@ export default function Tweet({
       ) : null}
       {quoteTweet ? <Tweet {...quoteTweet} /> : null}
       <a
-        className="!text-neutral-500 dark:!text-neutral-400 text-sm !hover:underline"
+        className="!text-muted-100 dark:!text-muted-100 text-sm !hover:underline"
         href={tweetUrl}
         target="_blank"
         rel="noopener noreferrer"
@@ -135,7 +135,7 @@ export default function Tweet({
       </a>
       <div className="flex text-sm mt-2">
         <a
-          className="flex items-center mr-4 !text-neutral-500 dark:!text-neutral-400 hover:!text-blue-600 transition !hover:underline"
+          className="flex items-center mr-4 !text-muted-100 dark:!text-muted-100 hover:!text-blue-600 transition !hover:underline"
           href={replyUrl}
           target="_blank"
           rel="noopener noreferrer"
@@ -153,7 +153,7 @@ export default function Tweet({
           </span>
         </a>
         <a
-          className="flex items-center mr-4 !text-neutral-500 dark:!text-neutral-400 hover:!text-green-600 transition !hover:underline"
+          className="flex items-center mr-4 !text-muted-100 dark:!text-muted-100 hover:!text-green-600 transition !hover:underline"
           href={retweetUrl}
           target="_blank"
           rel="noopener noreferrer"
@@ -171,7 +171,7 @@ export default function Tweet({
           </span>
         </a>
         <a
-          className="flex items-center !text-neutral-500 dark:!text-neutral-400 hover:!text-red-600 transition !hover:underline"
+          className="flex items-center !text-muted-100 dark:!text-muted-100 hover:!text-red-600 transition !hover:underline"
           href={likeUrl}
           target="_blank"
           rel="noopener noreferrer"
