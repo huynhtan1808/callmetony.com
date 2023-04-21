@@ -25,16 +25,16 @@ export default async function HomePage() {
 
   return (
     <section>
-      <div className="flex items-start md:items-center mb-8 flex-col md:flex-row">
+      <div className="flex items-start mb-8 flex-col">
         <Image
           alt={name}
-          className="rounded-full grayscale"
+          className="rounded-full grayscale mb-4"
           src={avatar}
           placeholder="blur"
-          width={100}
+          width={80}
           priority
         />
-        <div className="mt-8 md:mt-0 ml-0 md:ml-6 space-y-2 ">
+        <div className="mt-8 md:mt-0 space-y-2 ">
         
         <h1 className="font-bold">{name}</h1>
         <p className="mb-5 max-w-[460px] text-neutral-800 dark:text-muted-100">
