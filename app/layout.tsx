@@ -15,10 +15,10 @@ export const metadata: Metadata = {
     default: 'Tony Huynh',
     template: '%s | Tony Huynh',
   },
-  description: 'Developer, writer, and creator.',
+  description: 'I am a designer, developer, and founder of One Pixel Media, a digital marketing agency specialising in design, development and branding.',
   openGraph: {
     title: 'Tony Huynh',
-    description: 'Developer, writer, and creator.',
+    description: 'I am a designer, developer, and founder of One Pixel Media, a digital marketing agency specialising in design, development and branding.',
     url: 'https://callmetony.com',
     siteName: 'Tony Huynh',
     images: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
         height: 1080,
       },
     ],
-    locale: 'en-US',
+    locale: 'vn-VN',
     type: 'website',
   },
   robots: {
@@ -50,8 +50,8 @@ export const metadata: Metadata = {
     shortcut: '/favicon.ico',
   },
   verification: {
-    google: 'eZSdmzAXlLkKhNJzfgwDqWORghxnJ8qR9_CHdAh5-xw',
-    yandex: '14d2e73487fa6c71',
+    google: '',
+    yandex: '',
   },
 };
 
