@@ -1,7 +1,7 @@
 export default function AboutPage() {
   return (
     <section>
-      <h1 className="font-bold text-xl">About Me</h1>
+      <h1 className="font-bold text-xl">About me</h1>
       <div className="my-5 prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-200">
       <p>
         Hello, mình hiện đang là Fullstack Web Developer, và là Founder của One Pixel Media.

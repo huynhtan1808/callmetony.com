@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function Workspace() {
   return (
     <section>
-      <h1 className="font-bold text-xl mb-8">Góc làm việc</h1>
+      <h1 className="font-bold text-xl mb-8">My workspace</h1>
       <p className="text-neutral-700 dark:text-neutral-300 mt-2 mb-8">
         Dưới đây là tất cả các đồ dùng công nghệ và phần mềm mình dùng để phục vụ cho công việc.
       </p>
