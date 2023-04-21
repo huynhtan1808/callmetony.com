@@ -28,7 +28,7 @@ export const metadata: Metadata = {
         height: 1080,
       },
     ],
-    locale: 'vn-VN',
+    locale: 'vi-VN',
     type: 'website',
   },
   robots: {
