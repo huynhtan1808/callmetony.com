@@ -16,10 +16,10 @@ export default function Card({ title, description, imageUrl, cardUrl }: CardProp
             <Image alt={title} src={imageUrl} width="48" height="48" decoding="async" data-nimg="1" className="object-cover" loading="lazy"/>
         </div>
         <div>
-            <p className="-mb-1 hover:text-text dark:hover:text-white">
+            <p className="hover:text-text dark:hover:text-white">
             {title}
             </p>
-        <p className="text-muted-100 dark:text-muted-100">{description}</p>
+        <p className="text-sm text-muted-100 dark:text-muted-100">{description}</p>
         </div>
     </div>
     </Link> 
