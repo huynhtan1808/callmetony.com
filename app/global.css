@@ -15,6 +15,12 @@ html {
   font-size: 0.875em;
   line-height: 1.5rem;
 }
+.hover-scale:hover {
+  @apply transition-all duration-300 ease-in-out scale-x-105	scale-y-105;
+}
+.hover-scale {
+  @apply duration-300 ease-in-out;
+}
 
 .prose .anchor {
   @apply absolute invisible no-underline;

@@ -4,13 +4,15 @@ const { withContentlayer } = require('next-contentlayer');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    domains: ["salt.tikicdn.com"],
     formats: ['image/avif', 'image/webp'],
     // Twitter Profile Picture
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'pbs.twimg.com',
+        hostname: 'salt.tikicdn.com',
         pathname: '/**',
+        
       },
     ],
   },
