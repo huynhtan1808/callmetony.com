@@ -103,30 +103,16 @@ export default async function HomePage() {
         </div>
         <p className="text-muted-100 text-base">2023</p>
       </a>
-      
-      <a
-      rel="noopener noreferrer"
-      href="#"
-      className="flex w-full border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 no-underline items-center text-neutral-800 dark:text-neutral-200 hover:dark:bg-neutral-900 hover:bg-neutral-100 transition-all justify-between"
-      >
-        <div className="flex items-center justify-between">
-          <div className="ml-3">
-            <p>Watching</p>
-            <p className="text-muted-100">What I've been watching</p>
-        </div>
-        </div>
-        <p className="text-muted-100 text-base">2023</p>
-      </a>
 
       <a
       rel="noopener noreferrer"
-      href="#"
+      href="/workspace"
       className="flex w-full border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 no-underline items-center text-neutral-800 dark:text-neutral-200 hover:dark:bg-neutral-900 hover:bg-neutral-100 transition-all justify-between"
       >
         <div className="flex items-center justify-between">
           <div className="ml-3">
-            <p>My software stack</p>
-            <p className="text-muted-100">The software I use</p>
+            <p>My Workspace</p>
+            <p className="text-muted-100">The gear and software I use</p>
         </div>
         </div>
         <p className="text-muted-100 text-base">2023</p>

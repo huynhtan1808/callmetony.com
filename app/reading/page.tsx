@@ -1,4 +1,4 @@
-import Card from "components/card";
+import BookCard from "components/bookcard";
 import ReadingProgressBar from "components/reading";
 
 
@@ -17,7 +17,7 @@ export default function ReadingPage() {
         <div className="mt-8">
             <p>Sách đang đọc</p>
                 <div className="mt-8 grid grid-cols-2 gap-4 md:gap-14">
-                <Card
+                <BookCard
                 title="Gian Nan Chồng Chất Gian Nan"
                 author="Ben Horowitz"
                 imageUrl="/gian-nan-chong-chat-gian-nan.jpeg"

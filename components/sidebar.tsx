@@ -15,9 +15,6 @@ const navItems = {
   '/blog': {
     name: 'blog',
   },
-  '/workspace': {
-    name: 'workspace',
-  },
 };
 
 function Logo() {
