@@ -5,7 +5,7 @@ export const avatar = me;
 export const about = () => {
   return (
     <>
-    Founder of <a href="https://onepixelmedia.com">One Pixel Media</a>
+    Founder of <a href="https://onepixelmedia.com" className="spc-link">One Pixel Media</a>
     </>
   );
 };
