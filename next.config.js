@@ -4,13 +4,12 @@ const { withContentlayer } = require('next-contentlayer');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["salt.tikicdn.com"],
     formats: ['image/avif', 'image/webp'],
     // Twitter Profile Picture
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'salt.tikicdn.com',
+        hostname: 'callmetony.com',
         pathname: '/**',
         
       },
@@ -19,11 +18,18 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+
   redirects() {
     try {
       return get('redirects');
     } catch {
-      return [];
+      return [
+        {
+          source: '/post/nhan-ma-pin-google-adsense/',
+          destination: '/',
+          permanent: true,
+        },
+      ];
     }
   },
   headers() {
