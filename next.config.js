@@ -25,8 +25,48 @@ const nextConfig = {
     } catch {
       return [
         {
-          source: '/post/nhan-ma-pin-google-adsense/',
-          destination: '/',
+          source: '/post/nhan-ma-pin-google-adsense',
+          destination: '/blog',
+          permanent: true,
+        },
+        {
+          source: '/post/hoc-nexjs',
+          destination: '/blog/hoc-nexjs',
+          permanent: true,
+        },
+        {
+          source: '/post/nextjs-sitemap-robots',
+          destination: '/blog/nextjs-sitemap-robots',
+          permanent: true,
+        },
+        {
+          source: '/post/core-web-virals-anh-huong-google-rankings',
+          destination: '/blog/core-web-virals-anh-huong-google-rankings',
+          permanent: true,
+        },
+        {
+          source: '/post/hoc-css-animations-bang-vi-du',
+          destination: '/blog/hoc-css-animations-bang-vi-du',
+          permanent: true,
+        },
+        {
+          source: '/post/huong-dan-cho-nguoi-moi-bat-dau-ve-porfolio',
+          destination: '/blog/huong-dan-cho-nguoi-moi-bat-dau-ve-porfolio',
+          permanent: true,
+        },
+        {
+          source: '/post/hoc-nextjs',
+          destination: '/blog/hoc-nextjs',
+          permanent: true,
+        },
+        {
+          source: '/post/nen-chon-backend-nao',
+          destination: '/blog/nen-chon-backend-nao',
+          permanent: true,
+        },
+        {
+          source: '/post/web-fonts-nam-2021',
+          destination: '/blog/web-fonts-nam-2021',
           permanent: true,
         },
       ];
