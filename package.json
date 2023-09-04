@@ -13,6 +13,8 @@
     "@vercel/analytics": "^0.1.11",
     "@vercel/edge-config": "^0.1.1",
     "@vercel/og": "^0.0.27",
+    "axios": "^1.4.0",
+    "cheerio": "1.0.0-rc.12",
     "clsx": "^1.2.1",
     "contentlayer": "^0.3.0",
     "date-fns": "^2.29.3",
@@ -32,7 +34,7 @@
     "remark-gfm": "^3.0.1",
     "server-only": "^0.0.1",
     "shiki": "^0.13.0",
-    "swr": "^2.0.3"
+    "swr": "^2.2.1"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",

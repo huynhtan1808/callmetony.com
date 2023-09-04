@@ -3,11 +3,11 @@ import Image from 'next/image';
 import { getBlogViews } from 'lib/metrics';
 import {
   ArrowIcon,
-  GitHubIcon,
-  TwitterIcon,
   ViewsIcon,
 } from 'components/icons';
 import { name, about, bio, avatar } from 'lib/info';
+import Card from 'components/card';
+
 
 export const revalidate = 60;
 
@@ -55,36 +55,30 @@ export default async function HomePage() {
       
       <div className="space-y-4">
       <h2 className="mb-8">Work</h2>
+      <Card
+      title="Extractori"
+      description="All in one Online Extractor Tool Kit"
+      imageUrl="/extractori.png"
+      cardUrl="https://www.extractori.com/"
+      year="2023"
+      />
+      
+      <Card
+      title="One Pixel Media"
+      description="My Digital Marketing Agency"
+      imageUrl="/One-Pixel-Media.png"
+      cardUrl="https://onepixelmedia.com/"
+      year="2021 - now"
+      />
+      
+      <Card
+      title="Hôm nay ăn gì?"
+      description="Chatbot AI giúp vợ nấu ăn"
+      imageUrl="/cooking.png"
+      cardUrl="https://homnayangi.xyz/"
+      year="2023"
+      />
 
-      <a
-      rel="noopener noreferrer"
-      target="_blank"
-      href="https://homnayangi.xyz/"
-      className="flex w-full border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 no-underline items-center text-neutral-800 dark:text-neutral-200 hover:dark:bg-neutral-900 hover:bg-neutral-100 transition-all justify-between"
-      >
-        <div className="flex items-center justify-between">
-          <div className="ml-3">
-            <p>Hôm nay ăn gì?</p>
-            <p className="text-muted-100">Chatbot AI giúp vợ nấu ăn</p>
-        </div>
-        </div>
-        <p className="text-muted-100 text-base">2023</p>
-      </a>
-
-      <a
-      rel="noopener noreferrer"
-      target="_blank"
-      href="https://onepixelmedia.com"
-      className="flex w-full border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 no-underline items-center text-neutral-800 dark:text-neutral-200 hover:dark:bg-neutral-900 hover:bg-neutral-100 transition-all justify-between"
-      >
-        <div className="flex items-center justify-between">
-          <div className="ml-3">
-            <p>One Pixel Media</p>
-            <p className="text-muted-100">My Digital Marketing Agency</p>
-        </div>
-        </div>
-        <p className="text-muted-100 text-base">2021 - now</p>
-      </a>
       </div>
 
       <div className="mt-20 space-y-4">

@@ -25,6 +25,7 @@ export default function Workspace() {
           description="My laptop"
           imageUrl="/13-inch-macbook-pro-m1.png"
           cardUrl="https://shope.ee/4ATzrzXYEi"
+          year=""
         />
         
         <Card
@@ -32,6 +33,7 @@ export default function Workspace() {
           description="My monitor"
           imageUrl="/LG-29WN600.png"
           cardUrl="https://shope.ee/9p8McSAlbc"
+          year=""
         />
         
         <Card
@@ -39,6 +41,7 @@ export default function Workspace() {
           description="My mouse"
           imageUrl="/Logitech-MX-Master-2.png"
           cardUrl="https://shope.ee/6KYUS3EU3H"
+          year=""
         />
         
         <Card
@@ -46,6 +49,7 @@ export default function Workspace() {
           description="My keyboard"
           imageUrl="/keychron-k6.png"
           cardUrl="https://siliconz.vn/project/23/keychron-k6.html?utm_source=webkeychron"
+          year=""
         />
         
         <Card
@@ -53,6 +57,7 @@ export default function Workspace() {
           description="My chair"
           imageUrl="/corsair-t3-rush.png"
           cardUrl="https://shope.ee/8pFpQmb4PD"
+          year=""
         />
 
 
@@ -63,6 +68,7 @@ export default function Workspace() {
           description="Code editor"
           imageUrl="/vscode.webp"
           cardUrl="https://code.visualstudio.com/"
+          year=""
         />
         
         <Card
@@ -70,6 +76,7 @@ export default function Workspace() {
           description="React framework"
           imageUrl="/nextjs.webp"
           cardUrl="https://nextjs.org/"
+          year=""
         />
         
         <Card
@@ -77,6 +84,7 @@ export default function Workspace() {
           description="CSS framework"
           imageUrl="/tailwind.webp"
           cardUrl="https://tailwindcss.com/"
+          year=""
         />
        
         <h3 id="software" className="mt-8 mb-4 font-semibold">Software</h3>
@@ -86,6 +94,7 @@ export default function Workspace() {
           description="Password manager"
           imageUrl="/1-password.png"
           cardUrl="https://1password.com/"
+          year=""
         />
         
         <Card
@@ -93,6 +102,7 @@ export default function Workspace() {
           description="Music and Podcasts"
           imageUrl="/spotify.png"
           cardUrl="https://open.spotify.com/"
+          year=""
         />
         
         <Card
@@ -100,6 +110,7 @@ export default function Workspace() {
           description="Free Writing assistant"
           imageUrl="/grammarly.png"
           cardUrl="https://app.grammarly.com/"
+          year=""
         />
         
         <Card
@@ -107,6 +118,7 @@ export default function Workspace() {
           description="Artificial Intelligence (AI) chatbot"
           imageUrl="/chatgpt.png"
           cardUrl="https://openai.com/blog/chatgpt"
+          year=""
         />
 
       </div>
