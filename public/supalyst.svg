@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 508 508">
+  <g id="bccc6271-2bcd-4b27-93e4-ac10034baf2a" data-name="Layer 2">
+    <g id="b07a8b62-9589-46e5-b7dc-bd96e3471cc7" data-name="Layer 1">
+      <circle cx="254" cy="254" r="254" style="fill: #042a27"/>
+      <g>
+        <path d="M295.29,88.83H154.9a33,33,0,0,0-33,33V386.14a33,33,0,0,0,33,33H353.1a33,33,0,0,0,33-33V179.67Z" style="fill: none;stroke: #fff;stroke-linecap: round;stroke-linejoin: round;stroke-width: 20px"/>
+        <polyline points="287.03 88.83 287.03 187.93 386.13 187.93" style="fill: none;stroke: #fff;stroke-linecap: round;stroke-linejoin: round;stroke-width: 20px"/>
+        <path d="M320.07,270.52l-57.81,57.81-33-33-41.29,41.29" style="fill: none;stroke: #fff;stroke-linecap: round;stroke-linejoin: round;stroke-width: 20px"/>
+      </g>
+    </g>
+  </g>
+</svg>

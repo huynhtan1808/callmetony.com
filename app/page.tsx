@@ -55,6 +55,15 @@ export default async function HomePage() {
       
       <div className="space-y-4">
       <h2 className="mb-8">Work</h2>
+
+      <Card
+      title="Supalyst"
+      description="Chat with any CSV or PDF file, Powered by AI"
+      imageUrl="/supalyst.svg"
+      cardUrl="https://supalyst.com/"
+      year="2023"
+      />
+
       <Card
       title="Extractori"
       description="All in one Online Extractor Tool Kit"
