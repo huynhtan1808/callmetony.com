@@ -59,7 +59,7 @@ export default async function HomePage() {
       <Card
       title="ToolTik"
       description="Download TikTok MP4, MP3, Thumbnail Without Watermark. Fast. All devices."
-      imageUrl="/supalyst.svg"
+      imageUrl="/Tooltik-app.png"
       cardUrl="https://www.tooltik.app/"
       year="2024"
       />
