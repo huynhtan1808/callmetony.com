@@ -64,10 +64,10 @@ export default function Workspace() {
         <h3 id="coding" className="mt-8 mb-4 font-semibold">Coding</h3>
 
         <Card
-          title="VSCode"
+          title="Cursor"
           description="Code editor"
-          imageUrl="/vscode.webp"
-          cardUrl="https://code.visualstudio.com/"
+          imageUrl="/cursor.jpeg"
+          cardUrl="https://www.cursor.com/"
           year=""
         />
         

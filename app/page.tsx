@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { getBlogViews } from 'lib/metrics';
 import {
   ArrowIcon,
   ViewsIcon,
@@ -12,16 +11,6 @@ import Card from 'components/card';
 export const revalidate = 60;
 
 export default async function HomePage() {
-  let views;
-
-  try {
-    [ views ] = await Promise.all([
-      getBlogViews(),
-      
-    ]);
-  } catch (error) {
-    console.error(error);
-  }
 
   return (
     <section>
@@ -49,12 +38,20 @@ export default async function HomePage() {
       <div className="my-12 text-muted-100 dark:text-muted-100">
           <Link href="/blog" className="flex items-center">
             <ViewsIcon />
-            {`${views.toLocaleString()} blog views all time`}
+            {`102.375 blog views all time`}
           </Link>
       </div>
       
       <div className="space-y-4">
       <h2 className="mb-8">Work</h2>
+
+      <Card
+      title="Repliio"
+      description="AI Email Generator Extension - Faster & Smarter Replies"
+      imageUrl="/repliio-logo.png"
+      cardUrl="https://repliio.com/"
+      year="2024"
+      />
 
       <Card
       title="ToolTik"
@@ -81,19 +78,19 @@ export default async function HomePage() {
       />
       
       <Card
+      title="Hôm nay ăn gì?"
+      description="Chatbot AI giúp vợ nấu ăn"
+      imageUrl="/cooking.png"
+      cardUrl="https://angi.callmetony.com/"
+      year="2023"
+      />
+      
+      <Card
       title="One Pixel Media"
       description="My Digital Marketing Agency"
       imageUrl="/One-Pixel-Media.png"
       cardUrl="https://onepixelmedia.com/"
       year="2021 - now"
-      />
-      
-      <Card
-      title="Hôm nay ăn gì?"
-      description="Chatbot AI giúp vợ nấu ăn"
-      imageUrl="/cooking.png"
-      cardUrl="https://homnayangi.xyz/"
-      year="2023"
       />
 
       </div>

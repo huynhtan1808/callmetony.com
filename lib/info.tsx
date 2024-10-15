@@ -12,7 +12,7 @@ export const about = () => {
 export const bio = () => {
   return (
     <>
-    I am a designer, developer, and founder of One Pixel Media, a digital marketing agency specialising in design, development and branding.
+    I am a software engineer, founder of One Pixel Media, a digital marketing agency specialising in design, development and branding.
     </>
   );
 };

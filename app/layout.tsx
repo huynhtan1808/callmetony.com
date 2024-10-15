@@ -15,10 +15,10 @@ export const metadata: Metadata = {
     default: 'Tony Huynh',
     template: '%s | Tony Huynh',
   },
-  description: 'I am a designer, developer, and founder of One Pixel Media, a digital marketing agency specialising in design, development and branding.',
+  description: 'I am a software engineer, founder of One Pixel Media, a digital marketing agency specialising in design, development and branding.',
   openGraph: {
     title: 'Tony Huynh',
-    description: 'I am a designer, developer, and founder of One Pixel Media, a digital marketing agency specialising in design, development and branding.',
+    description: 'I am a software engineer, founder of One Pixel Media, a digital marketing agency specialising in design, development and branding.',
     url: 'https://callmetony.com',
     siteName: 'Tony Huynh',
     images: [

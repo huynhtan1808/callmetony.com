@@ -18,10 +18,19 @@ export default function ReadingPage() {
             <p>Sách đang đọc</p>
                 <div className="mt-8 grid grid-cols-2 gap-4 md:gap-14">
                 <BookCard
+                title="Sapiens: Lược Sử Loài Người"
+                author="Yuval Noah Harari"
+                imageUrl="/luoc-su-loai-nguoi-sapiens.webp"
+                buyUrl="https://tiki.vn/sapiens-luoc-su-loai-nguoi-tai-ban-2022-p253137819.html"
+                seller="Mua trên Tiki"
+                />
+                
+                <BookCard
                 title="Gian Nan Chồng Chất Gian Nan"
                 author="Ben Horowitz"
                 imageUrl="/gian-nan-chong-chat-gian-nan.jpeg"
-                buyUrl="https://www.fahasa.com/gian-nan-chong-chat-gian-nan-tai-ban-2018.html"
+                buyUrl="https://www.alphabooks.vn/gian-nan-chong-chat-gian-nan"
+                seller="Mua trên Alphabooks"
                 />
                
                 </div>
